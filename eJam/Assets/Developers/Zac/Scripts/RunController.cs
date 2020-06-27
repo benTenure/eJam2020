@@ -42,8 +42,8 @@ public class RunController : MonoBehaviour
 
     bool bDoubleJumped = false;
 
-    List<PedestrianController> PedestrianStack;
-    List<PedestrianController> PedestrianRefs;
+    List<PedestrianController> PedestrianStack = new List<PedestrianController>();
+    List<PedestrianController> PedestrianRefs = new List<PedestrianController>();
     IEnumerator GrabEnumRef;
 
     private void Awake()
