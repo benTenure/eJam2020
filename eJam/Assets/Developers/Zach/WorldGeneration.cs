@@ -68,7 +68,16 @@ public class WorldGeneration : MonoBehaviour
 
         r = Random.Range(0, data.Buildings.Count);
         SpawnPeice(data.Buildings[r], newSection);
-        r = Random.Range(0, data.Roads.Count);
+
+        float r2 = Random.value;
+        if (r2 > .7)
+        {
+            r = 0;
+        }
+        else
+        {
+            r = Random.Range(0, data.Roads.Count);
+        }
         SpawnPeice(data.Roads[r], newSection);
         SpawnPeice(data.BottomSidewalks[0], newSection);
         return newSection;

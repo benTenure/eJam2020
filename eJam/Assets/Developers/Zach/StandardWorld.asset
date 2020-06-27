@@ -29,9 +29,11 @@ MonoBehaviour:
   - {fileID: 6154505232641239970, guid: 6e29357ee6f290b44863bc9bd1d5446f, type: 3}
   - {fileID: 6154505232641239970, guid: 931a2695e46546f44b99a991aae5b4a8, type: 3}
   - {fileID: 6154505232641239970, guid: af475010bd645584b9b7a7ed4225e758, type: 3}
+  - {fileID: 6154505232641239970, guid: 992632981fbbc414d89767d8d090172a, type: 3}
+  - {fileID: 6154505232641239970, guid: f453063a1dc633e4a83d07d90dffdefa, type: 3}
   SafeZones:
-  - {fileID: 3931026399924079328, guid: 8a992b4ee3daf024a9b3deb5573ac048, type: 3}
+  - {fileID: 3931026399924079328, guid: b3091f1358eacb14ea6b91465633250a, type: 3}
   lengthGenerated: 8
-  minimumDistanceBetweenSafeZones: 0
-  safeZoneDistanceVariance: 0
+  minimumDistanceBetweenSafeZones: 10
+  safeZoneDistanceVariance: 5
   scrollSpeed: 10
