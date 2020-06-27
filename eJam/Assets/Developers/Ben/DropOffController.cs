@@ -26,7 +26,7 @@ public class DropOffController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             print("Creating drop off location...");
-            var player = other.GetComponent<RunController>();
+            var player = other.GetComponentInParent<RunController>();
             GetDropOffLocation(player);
         }
     }
