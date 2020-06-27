@@ -18,7 +18,8 @@ public class RunController : MonoBehaviour
     public float Acceleration = 25.0f;
     public float Deceleration = 25.0f;
     public Transform PushTransform; // The forward vector of this object is the direction the player will be pushed in
-    public float PushForce = 5.0f;
+    public float MinPushForce = 5.0f;
+    float PushForce = 5.0f;
 
     [Header("Jumping Values")]
     public float Gravity = 20.0f;
@@ -47,6 +48,11 @@ public class RunController : MonoBehaviour
     IEnumerator GrabEnumRef;
     bool bGrabEnumRunning = false;
 
+    private void Start()
+    {
+        PushForce = MinPushForce;
+    }
+
     private void Awake()
     {
         inputActions = new PlayerInputActions();
@@ -60,7 +66,7 @@ public class RunController : MonoBehaviour
 
     void drop()
     {
-        DropOffPedestrians(MyRigidBody.transform.position + PushTransform.forward);
+        DropOffPedestrians(RespawnTransform.position);
     }
 
     void jump()
@@ -244,6 +250,7 @@ public class RunController : MonoBehaviour
         PedestrianQueue.Remove(pedestrianRef);
         PedestrianRefs.Add(pedestrianRef);
         pedestrianRef.transform.parent = PedestrianParent.transform;
+        PushForce += 1.0f;
         bGrabEnumRunning = false;
         if (PedestrianQueue.Count > 0)
         {
@@ -284,8 +291,16 @@ public class RunController : MonoBehaviour
             pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
+        pedestrianRef.transform.position = destination;
+
         PedestrianRefs.Remove(pedestrianRef);
-        
+
+        PushForce -= 1.0f;
+        if(PushForce < MinPushForce)
+        {
+            PushForce = MinPushForce;
+        }
+
         if (PedestrianRefs.Count > 0)
         {
             DropOffPedestrians(destination);
