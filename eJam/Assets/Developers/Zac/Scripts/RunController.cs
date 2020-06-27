@@ -287,14 +287,16 @@ public class RunController : MonoBehaviour
         return returnTransform;
     }
 
-    public void DropOffPedestrians(GameObject destination)
+    public bool DropOffPedestrians(GameObject destination)
     {
         if (!bGrabEnumRunning && PedestrianRefs.Count > 0)
         {
             bDropEnumRunning = true;
             PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
             StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+            return true;
         }
+        return false;
     }
 
     public Vector3 ReturnRandomVectorWithinBounds(GameObject bounds)

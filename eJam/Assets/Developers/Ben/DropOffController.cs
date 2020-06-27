@@ -9,13 +9,23 @@ public class DropOffController : MonoBehaviour
     // public Transform dropOffLocation;
     public GameObject dropOffZone;
 
-    private void OnTriggerEnter(Collider other)
+    bool bDroppingOff = false;
+
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !bDroppingOff)
         {
             print("Creating drop off location...");
             var player = other.GetComponentInParent<RunController>();
-            player.DropOffPedestrians(dropOffZone);
+            bDroppingOff = player.DropOffPedestrians(dropOffZone);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            bDroppingOff = false;
         }
     }
 }
