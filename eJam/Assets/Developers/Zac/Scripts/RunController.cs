@@ -132,7 +132,7 @@ public class RunController : MonoBehaviour
 
     void HandleFacingDirection()
     {
-        if (lerpingMovementInput != Vector3.zero)
+        if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
             MyRigidBody.transform.rotation = Quaternion.LookRotation(lerpingMovementInput);
         }
