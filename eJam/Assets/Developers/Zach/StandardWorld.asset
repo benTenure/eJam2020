@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 8306750126260907441, guid: 1dcd3c07d7f90624cac822c803d59217, type: 3}
   - {fileID: 8306750126260907441, guid: d23e087f8d871944b92b7d6b8571d704, type: 3}
   - {fileID: 8306750126260907441, guid: c0bb450bede81e74185c1121b973230d, type: 3}
+  - {fileID: 8306750126260907441, guid: 6dc0c0317113ed44ea63fd9648006882, type: 3}
   Roads:
   - {fileID: 6154505232641239970, guid: 6e29357ee6f290b44863bc9bd1d5446f, type: 3}
   - {fileID: 6154505232641239970, guid: 931a2695e46546f44b99a991aae5b4a8, type: 3}
@@ -36,4 +37,4 @@ MonoBehaviour:
   lengthGenerated: 8
   minimumDistanceBetweenSafeZones: 10
   safeZoneDistanceVariance: 5
-  scrollSpeed: 10
+  scrollSpeed: 20
