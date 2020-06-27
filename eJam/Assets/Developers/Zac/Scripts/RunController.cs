@@ -305,7 +305,7 @@ public class RunController : MonoBehaviour
         {
             dir = destination - pedestrianRef.transform.position;
             mag = dir.magnitude;
-            pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
+            pedestrianRef.transform.position += (dir.normalized * 200.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
         pedestrianRef.transform.position = destination;
