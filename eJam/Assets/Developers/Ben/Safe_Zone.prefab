@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 6774739255878726086}
   - component: {fileID: 3971065327469511580}
   - component: {fileID: 7101793372187165562}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DropOff_Trigger
   m_TagString: DropOff
   m_Icon: {fileID: 0}
@@ -5407,7 +5407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2413212426110181236}
   - component: {fileID: 393226318825900730}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DropOffZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
