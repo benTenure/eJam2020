@@ -42,9 +42,10 @@ public class RunController : MonoBehaviour
 
     bool bDoubleJumped = false;
 
-    List<PedestrianController> PedestrianStack = new List<PedestrianController>();
-    List<PedestrianController> PedestrianRefs = new List<PedestrianController>();
+    public List<PedestrianController> PedestrianStack = new List<PedestrianController>();
+    public List<PedestrianController> PedestrianRefs = new List<PedestrianController>();
     IEnumerator GrabEnumRef;
+    bool bGrabEnumRunning = false;
 
     private void Awake()
     {
@@ -112,6 +113,15 @@ public class RunController : MonoBehaviour
             finalPushForce = (PushTransform.forward * PushForce);
         }
         MyRigidBody.velocity = new Vector3(lerpingMovementInput.x * currentSpeed, currentJump, lerpingMovementInput.z * currentSpeed) + finalPushForce;
+        HandleFacingDirection();
+    }
+
+    void HandleFacingDirection()
+    {
+        if (lerpingMovementInput != Vector3.zero)
+        {
+            MyRigidBody.transform.rotation = Quaternion.LookRotation(lerpingMovementInput);
+        }
     }
 
     void CheckForGround()
@@ -163,6 +173,7 @@ public class RunController : MonoBehaviour
     {
         if(baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
+            HandleFacingDirection();
             currentSpeed += Acceleration * Time.deltaTime;
         }
         else if (currentSpeed > 0)
@@ -193,50 +204,57 @@ public class RunController : MonoBehaviour
 
     public void GrabPedestrian(PedestrianController pedestrianRef)
     {
-        PedestrianStack.Add(pedestrianRef);
-        startGrabEnum(pedestrianRef);
+        if (!PedestrianStack.Contains(pedestrianRef))
+        {
+            PedestrianStack.Add(pedestrianRef);
+            if (!bGrabEnumRunning)
+            {
+                startGrabEnum(pedestrianRef);
+            }
+        }
     }
 
     void startGrabEnum(PedestrianController pedestrianRef)
     {
-        if (GrabEnumRef == null)
-        {
-            Vector3 destination = GetPedestrianBackDestination();
-            GrabEnumRef = InterpPedestrian(pedestrianRef, destination);
-            StartCoroutine(GrabEnumRef);
-        }
+        Transform destination = GetPedestrianBackDestination();
+        GrabEnumRef = InterpPedestrian(pedestrianRef, destination);
+        StartCoroutine(GrabEnumRef);
     }
 
-    IEnumerator InterpPedestrian(PedestrianController pedestrianRef, Vector3 destination)
+    IEnumerator InterpPedestrian(PedestrianController pedestrianRef, Transform destination)
     {
-        float mag = (destination - pedestrianRef.transform.position).magnitude;
-        while (mag >= 0.2f)
+        bGrabEnumRunning = true;
+        float mag = (destination.position - pedestrianRef.transform.position).magnitude;
+        Debug.Log(mag);
+        while (mag >= 0.5f)
         {
-            mag = (destination - pedestrianRef.transform.position).magnitude;
-            pedestrianRef.transform.Translate(destination - pedestrianRef.transform.position);
+            mag = (destination.position - pedestrianRef.transform.position).magnitude;
+            pedestrianRef.transform.position += (((destination.position + Vector3.up) - pedestrianRef.transform.position) * 10.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
         PedestrianStack.Remove(pedestrianRef);
         PedestrianRefs.Add(pedestrianRef);
+        pedestrianRef.transform.parent = PedestrianParent.transform;
+        bGrabEnumRunning = false;
         if (PedestrianStack.Count > 0)
         {
             startGrabEnum(PedestrianStack[PedestrianStack.Count - 1]);
         }
     }
 
-    Vector3 GetPedestrianBackDestination()
+    Transform GetPedestrianBackDestination()
     {
-        Vector3 returnVector = new Vector3();
+        Transform returnTransform;
 
         if(PedestrianRefs.Count == 0)
         {
-            returnVector = PedestrianParent.position;
+            returnTransform = PedestrianParent;
         }
         else
         {
-            returnVector = PedestrianRefs[PedestrianRefs.Count - 1].transform.position + Vector3.up;
+            returnTransform = PedestrianRefs[PedestrianRefs.Count - 1].transform;
         }
 
-        return returnVector;
+        return returnTransform;
     }
 }

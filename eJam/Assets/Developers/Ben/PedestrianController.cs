@@ -20,7 +20,7 @@ public class PedestrianController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        print($"Time: {_timePickedUp}");
+        //print($"Time: {_timePickedUp}");
     }
 
     public void PickUpPedestrian()
@@ -40,7 +40,7 @@ public class PedestrianController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !_isPickedUp)
         {
             print("We found the player");
             PickUpPedestrian();
