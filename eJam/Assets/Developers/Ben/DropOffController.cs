@@ -33,13 +33,13 @@ public class DropOffController : MonoBehaviour
 
     private void GetDropOffLocation(RunController player)
     {
-        var worldSpaceVector = dropOffZone.transform.TransformPoint(transform.position);
+        // var worldSpaceVector = dropOffZone.transform.TransformPoint(transform.position);
 
         var colliderScaleX = dropOffZone.transform.localScale.x / 2;
         var colliderScaleZ = dropOffZone.transform.localScale.z / 2;
         
-        var randomX = Random.Range(worldSpaceVector.x - colliderScaleX, worldSpaceVector.x + colliderScaleX);
-        var randomZ = Random.Range(worldSpaceVector.z - colliderScaleZ, worldSpaceVector.z + colliderScaleZ);
+        var randomX = Random.Range(dropOffZone.transform.position.x - colliderScaleX, dropOffZone.transform.position.x + colliderScaleX);
+        var randomZ = Random.Range(dropOffZone.transform.position.z - colliderScaleZ, dropOffZone.transform.position.z + colliderScaleZ);
         var randomDropOffVector = new Vector3(randomX, 0f, randomZ);
         
         print(randomDropOffVector);
