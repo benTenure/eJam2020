@@ -16,6 +16,7 @@ public class WorldGeneration : MonoBehaviour
     public List<GameObject> sections;
 
     private GameObject world;
+    private int nextSafeZone;
 
     void Awake(){
         GenerateStart();
@@ -25,7 +26,14 @@ public class WorldGeneration : MonoBehaviour
         world = new GameObject();
         world.transform.parent = transform;
 
-        for(int i = 0; i < data.lengthGenerated; i++){
+        int minSafeDistance = data.minimumDistanceBetweenSafeZones;
+        int maxSafeDistance = data.safeZoneDistanceVariance + minSafeDistance;
+
+        nextSafeZone = 0 + Random.Range(minSafeDistance, maxSafeDistance);
+
+
+
+        for (int i = 0; i < data.lengthGenerated; i++){
             GameObject newSection = CreateNewSection();
             newSection.transform.parent = world.transform;
 
@@ -40,8 +48,24 @@ public class WorldGeneration : MonoBehaviour
     GameObject CreateNewSection(){
         int r;
         GameObject newSection = new GameObject();
-        r = Random.Range(0, data.TopSidewalks.Count);
-        SpawnPeice(data.TopSidewalks[r], newSection);
+
+        print(nextSafeZone);
+        if(GetBlocksRun() == nextSafeZone)
+        {
+            int minSafeDistance = data.minimumDistanceBetweenSafeZones;
+            int maxSafeDistance = data.safeZoneDistanceVariance + minSafeDistance;
+
+            nextSafeZone = nextSafeZone + Random.Range(minSafeDistance, maxSafeDistance);
+
+            SpawnPeice(data.SafeZones[0], newSection);
+        }
+        else {
+            r = Random.Range(0, data.TopSidewalks.Count);
+            SpawnPeice(data.TopSidewalks[r], newSection);
+        }
+
+
+
         r = Random.Range(0, data.Buildings.Count);
         SpawnPeice(data.Buildings[r], newSection);
         r = Random.Range(0, data.Roads.Count);
