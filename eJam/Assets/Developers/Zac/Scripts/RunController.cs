@@ -18,6 +18,7 @@ public class RunController : MonoBehaviour
     public float Deceleration = 25.0f;
 
     float currentSpeed = 0.0f;
+    float currentJump = 0.0f;
 
     PlayerInputActions inputActions;
     Vector3 baseMovementInput;
@@ -35,7 +36,14 @@ public class RunController : MonoBehaviour
 
     void jump()
     {
+        currentJump = 20.0f;
         Debug.Log("We jumped!");
+
+        // Once you enter the jumping state, decrement the current jump value until you reach the lower bound or collide with the ground.
+        //if (currentJump > -50)
+        //{
+        //    currentJump -= 20 * Time.deltaTime;
+        //}
     }
 
     // Update is called once per frame
@@ -46,7 +54,7 @@ public class RunController : MonoBehaviour
         cameraRelativeMovementInput = MyCamera.transform.parent.TransformDirection(baseMovementInput);
 
         lerpingMovementInput = Vector3.Lerp(lerpingMovementInput, cameraRelativeMovementInput, 5 * Time.deltaTime);
-        MyRigidBody.velocity = lerpingMovementInput * currentSpeed;
+        MyRigidBody.velocity = new Vector3(lerpingMovementInput.x * currentSpeed, currentJump, lerpingMovementInput.z * currentSpeed);
 
         Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + lerpingMovementInput, Color.red);
         Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + cameraRelativeMovementInput, Color.blue);
