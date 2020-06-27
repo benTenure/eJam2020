@@ -48,6 +48,8 @@ public class RunController : MonoBehaviour
     IEnumerator GrabEnumRef;
     bool bGrabEnumRunning = false;
 
+    bool bDropEnumRunning = false;
+
     private void Start()
     {
         PushForce = MinPushForce;
@@ -219,7 +221,7 @@ public class RunController : MonoBehaviour
         if (!PedestrianQueue.Contains(pedestrianRef))
         {
             PedestrianQueue.Add(pedestrianRef);
-            if (!bGrabEnumRunning)
+            if (!bGrabEnumRunning && !bDropEnumRunning)
             {
                 startGrabEnum(pedestrianRef);
             }
@@ -251,10 +253,13 @@ public class RunController : MonoBehaviour
         PedestrianRefs.Add(pedestrianRef);
         pedestrianRef.transform.parent = PedestrianParent.transform;
         PushForce += 1.0f;
-        bGrabEnumRunning = false;
         if (PedestrianQueue.Count > 0)
         {
             startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
+        }
+        else
+        {
+            bGrabEnumRunning = false;
         }
     }
 
@@ -274,10 +279,14 @@ public class RunController : MonoBehaviour
         return returnTransform;
     }
 
-    void DropOffPedestrians(Vector3 destination)
+    public void DropOffPedestrians(Vector3 destination)
     {
-        PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
-        StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+        if (!bGrabEnumRunning && !bDropEnumRunning)
+        {
+            bDropEnumRunning = true;
+            PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
+            StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+        }
     }
 
     IEnumerator DropPedestrian(PedestrianController pedestrianRef, Vector3 destination)
@@ -304,6 +313,14 @@ public class RunController : MonoBehaviour
         if (PedestrianRefs.Count > 0)
         {
             DropOffPedestrians(destination);
+        }
+        else
+        {
+            bDropEnumRunning = false;
+            if (PedestrianQueue.Count > 0)
+            {
+                startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
+            }
         }
     }
 }
