@@ -289,7 +289,7 @@ public class RunController : MonoBehaviour
 
     public bool DropOffPedestrians(GameObject destination)
     {
-        if (!bGrabEnumRunning && PedestrianRefs.Count > 0)
+        if (!bGrabEnumRunning && !bDropEnumRunning && PedestrianRefs.Count > 0)
         {
             bDropEnumRunning = true;
             PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
@@ -297,6 +297,12 @@ public class RunController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void DropOffManual(GameObject destination)
+    {
+        PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
+        StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
     }
 
     public Vector3 ReturnRandomVectorWithinBounds(GameObject bounds)
@@ -335,7 +341,7 @@ public class RunController : MonoBehaviour
 
         if (PedestrianRefs.Count > 0)
         {
-            DropOffPedestrians(destination);
+            DropOffManual(destination);
         }
         else
         {
