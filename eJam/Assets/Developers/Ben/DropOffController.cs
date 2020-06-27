@@ -8,18 +8,6 @@ public class DropOffController : MonoBehaviour
 {
     // public Transform dropOffLocation;
     public GameObject dropOffZone;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,22 +15,7 @@ public class DropOffController : MonoBehaviour
         {
             print("Creating drop off location...");
             var player = other.GetComponentInParent<RunController>();
-            GetDropOffLocation(player);
+            player.DropOffPedestrians(dropOffZone);
         }
-    }
-
-    private void GetDropOffLocation(RunController player)
-    {
-        // var worldSpaceVector = dropOffZone.transform.TransformPoint(transform.position);
-
-        var colliderScaleX = dropOffZone.transform.localScale.x / 2;
-        var colliderScaleZ = dropOffZone.transform.localScale.z / 2;
-        
-        var randomX = Random.Range(dropOffZone.transform.position.x - colliderScaleX, dropOffZone.transform.position.x + colliderScaleX);
-        var randomZ = Random.Range(dropOffZone.transform.position.z - colliderScaleZ, dropOffZone.transform.position.z + colliderScaleZ);
-        var randomDropOffVector = new Vector3(randomX, dropOffZone.transform.position.y, randomZ);
-        
-        print(randomDropOffVector);
-        player.DropOffPedestrians(randomDropOffVector);
     }
 }

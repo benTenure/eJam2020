@@ -68,7 +68,7 @@ public class RunController : MonoBehaviour
 
     void drop()
     {
-        DropOffPedestrians(RespawnTransform.position);
+        // DropOffPedestrians(RespawnTransform.position);
     }
 
     void jump()
@@ -287,7 +287,7 @@ public class RunController : MonoBehaviour
         return returnTransform;
     }
 
-    public void DropOffPedestrians(Vector3 destination)
+    public void DropOffPedestrians(GameObject destination)
     {
         if (!bGrabEnumRunning && PedestrianRefs.Count > 0)
         {
@@ -297,18 +297,31 @@ public class RunController : MonoBehaviour
         }
     }
 
-    IEnumerator DropPedestrian(PedestrianController pedestrianRef, Vector3 destination)
+    public Vector3 ReturnRandomVectorWithinBounds(GameObject bounds)
     {
-        Vector3 dir = destination - pedestrianRef.transform.position;
+        var colliderScaleX = bounds.transform.localScale.x / 2;
+        var colliderScaleZ = bounds.transform.localScale.z / 2;
+        
+        var randomX = Random.Range(bounds.transform.position.x - colliderScaleX, bounds.transform.position.x + colliderScaleX);
+        var randomZ = Random.Range(bounds.transform.position.z - colliderScaleZ, bounds.transform.position.z + colliderScaleZ);
+        var randomDropOffVector = new Vector3(randomX, bounds.transform.position.y, randomZ);
+
+        return randomDropOffVector;
+    }
+
+    IEnumerator DropPedestrian(PedestrianController pedestrianRef, GameObject destination)
+    {
+        var randomDestination = ReturnRandomVectorWithinBounds(destination);
+        Vector3 dir = randomDestination - pedestrianRef.transform.position;
         float mag = dir.magnitude;
         while (mag > 0.5f)
         {
-            dir = destination - pedestrianRef.transform.position;
+            dir = randomDestination - pedestrianRef.transform.position;
             mag = dir.magnitude;
             pedestrianRef.transform.position += (dir.normalized * 200.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
-        pedestrianRef.transform.position = destination;
+        pedestrianRef.transform.position = randomDestination;
 
         PedestrianRefs.Remove(pedestrianRef);
 
