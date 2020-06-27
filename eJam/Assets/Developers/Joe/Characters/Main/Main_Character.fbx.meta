@@ -7,6 +7,12 @@ ModelImporter:
       74: -8719598546967334352
     second: Character_Rig|Idle
   - first:
+      74: -6393896364318989826
+    second: Character_Rig|Run_Lower_NoCarry
+  - first:
+      74: -2196913867885095474
+    second: Character_Rig|Run_Upper_NoCarry
+  - first:
       74: -3657606448298207175
     second: Character_Rig|Shader NodetreeAction.001
   externalObjects: {}
@@ -67,18 +73,47 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Character_Rig|Shader NodetreeAction.001
-      takeName: Character_Rig|Shader NodetreeAction.001
+      name: Character_Rig|Run_Lower_NoCarry
+      takeName: Character_Rig|Run_Lower_NoCarry
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Character_Rig|Run_Upper_NoCarry
+      takeName: Character_Rig|Run_Upper_NoCarry
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
