@@ -30,6 +30,9 @@ public class RunController : MonoBehaviour
     [Header("Kill-Z Failsafe Transform")]
     public Transform RespawnTransform;
 
+    [Header("Animation")]
+    public Animator AnimationController;
+
     float currentSpeed = 0.0f;
     float currentJump = 0.0f;
 
@@ -116,6 +119,7 @@ public class RunController : MonoBehaviour
         }
 
         HandleMovement();
+        HandleAnimationStuff();
         Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + lerpingMovementInput, Color.red);
         Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + cameraRelativeMovementInput, Color.blue);
     }
@@ -130,6 +134,14 @@ public class RunController : MonoBehaviour
         }
         MyRigidBody.velocity = new Vector3(lerpingMovementInput.x * currentSpeed, currentJump, lerpingMovementInput.z * currentSpeed) + finalPushForce;
         HandleFacingDirection();
+    }
+
+    void HandleAnimationStuff()
+    {
+        AnimationController.SetFloat("Speed", currentSpeed);
+        AnimationController.SetBool("Grounded", CurrentState == PlayerState.grounded);
+        AnimationController.SetBool("Jumping", CurrentState == PlayerState.jumping);
+        AnimationController.SetBool("Falling", CurrentState == PlayerState.falling);
     }
 
     void HandleFacingDirection()

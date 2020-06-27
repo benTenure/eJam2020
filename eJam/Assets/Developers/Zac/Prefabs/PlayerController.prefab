@@ -201,6 +201,7 @@ MonoBehaviour:
   DoubleJumpStrength: 20
   bCanDoubleJump: 1
   RespawnTransform: {fileID: 0}
+  AnimationController: {fileID: 1742645024}
   PedestrianQueue: []
   PedestrianRefs: []
 --- !u!1 &7230416317818997510

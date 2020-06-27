@@ -7,7 +7,7 @@ AvatarMask:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mask_Upper
-  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
@@ -31,14 +31,6 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Character_Rig/Hips
     m_Weight: 0
-  - m_Path: Character_Rig/Hips/ElbowIK.L
-    m_Weight: 1
-  - m_Path: Character_Rig/Hips/ElbowIK.L/ElbowIK.L_end
-    m_Weight: 1
-  - m_Path: Character_Rig/Hips/ElbowIK.R
-    m_Weight: 1
-  - m_Path: Character_Rig/Hips/ElbowIK.R/ElbowIK.R_end
-    m_Weight: 1
   - m_Path: Character_Rig/Hips/HandIK.L
     m_Weight: 1
   - m_Path: Character_Rig/Hips/HandIK.L/LeftHand
@@ -115,13 +107,5 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Character_Rig/Hips/Spine/Chest/UpperChest/RightShoulder/RightArm/RightForeArm/RightForeArm_end
     m_Weight: 1
-  - m_Path: Character_Rig/KneeIK.L
-    m_Weight: 0
-  - m_Path: Character_Rig/KneeIK.L/KneeIK.L_end
-    m_Weight: 0
-  - m_Path: Character_Rig/KneeIK.R
-    m_Weight: 0
-  - m_Path: Character_Rig/KneeIK.R/KneeIK.R_end
-    m_Weight: 0
   - m_Path: characterMedium
     m_Weight: 1
