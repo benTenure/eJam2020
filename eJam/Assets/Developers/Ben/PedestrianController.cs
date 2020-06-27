@@ -44,6 +44,16 @@ public class PedestrianController : MonoBehaviour
         {
             print("We found the player");
             PickUpPedestrian();
+
+            RunController PlayerRef = other.GetComponent<RunController>();
+            if (PlayerRef)
+            {
+                PlayerRef.GrabPedestrian(this);
+            }
+            else
+            {
+                Debug.Log("PedestrianController.cs: Hey I can't find the player!");
+            }
         }
     }
 }
