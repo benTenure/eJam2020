@@ -14,7 +14,8 @@ public class RunController : MonoBehaviour
     public Transform PedestrianParent;
 
     [Header("Movement Values")]
-    public float MaxSpeed = 50.0f;
+    public float StartingMaxSpeed = 50.0f;
+    float MaxSpeed = 50.0f;
     public float Acceleration = 25.0f;
     public float Deceleration = 25.0f;
     public Transform PushTransform; // The forward vector of this object is the direction the player will be pushed in
@@ -55,9 +56,12 @@ public class RunController : MonoBehaviour
 
     Vector3 lastLookingDir;
 
+    const float PedestrianWeight = 1.0f;
+
     private void Start()
     {
         PushForce = MinPushForce;
+        MaxSpeed = StartingMaxSpeed;
     }
 
     private void Awake()
@@ -280,7 +284,11 @@ public class RunController : MonoBehaviour
         PedestrianQueue.Remove(pedestrianRef);
         PedestrianRefs.Add(pedestrianRef);
         pedestrianRef.transform.parent = PedestrianParent.transform;
-        PushForce += 1.0f;
+        MaxSpeed -= PedestrianWeight;
+        if(MaxSpeed <= 0.0f)
+        {
+            MaxSpeed = PedestrianWeight;
+        }
         if (PedestrianQueue.Count > 0)
         {
             startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
@@ -353,10 +361,10 @@ public class RunController : MonoBehaviour
 
         PedestrianRefs.Remove(pedestrianRef);
 
-        PushForce -= 1.0f;
-        if(PushForce < MinPushForce)
+        MaxSpeed += PedestrianWeight;
+        if(MaxSpeed > StartingMaxSpeed)
         {
-            PushForce = MinPushForce;
+            MaxSpeed = StartingMaxSpeed;
         }
 
         if (PedestrianRefs.Count > 0)

@@ -191,7 +191,7 @@ MonoBehaviour:
   MyCamera: {fileID: 7230416318742897008}
   MyRigidBody: {fileID: 1675477290853453966}
   PedestrianParent: {fileID: 2753632}
-  MaxSpeed: 25
+  StartingMaxSpeed: 20
   Acceleration: 75
   Deceleration: 100
   PushTransform: {fileID: 0}
