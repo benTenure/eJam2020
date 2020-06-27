@@ -18,6 +18,12 @@ public class WorldGenData : ScriptableObject
     [Range(4, 10)]
     public int lengthGenerated;
 
+    [Range(10, 40)]
+    public int minimumDistanceBetweenSafeZones;
+
+    [Range(0, 20)]
+    public int safeZoneDistanceVariance;
+
 
 
     [Header("Scroll Settings")]
