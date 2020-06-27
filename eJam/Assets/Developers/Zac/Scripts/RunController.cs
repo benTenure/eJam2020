@@ -50,6 +50,8 @@ public class RunController : MonoBehaviour
 
     bool bDropEnumRunning = false;
 
+    Vector3 lastLookingDir;
+
     private void Start()
     {
         PushForce = MinPushForce;
@@ -135,8 +137,14 @@ public class RunController : MonoBehaviour
         if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
             MyRigidBody.transform.rotation = Quaternion.LookRotation(lerpingMovementInput);
+            lastLookingDir = lerpingMovementInput.normalized;
+        }
+        else if (lastLookingDir != Vector3.zero)
+        {
+            MyRigidBody.transform.rotation = Quaternion.LookRotation(lastLookingDir);
         }
     }
+
 
     void CheckForGround()
     {
@@ -185,9 +193,9 @@ public class RunController : MonoBehaviour
 
     void UpdateCurrentSpeed()
     {
+        HandleFacingDirection();
         if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
-            HandleFacingDirection();
             currentSpeed += Acceleration * Time.deltaTime;
         }
         else if (currentSpeed > 0)
