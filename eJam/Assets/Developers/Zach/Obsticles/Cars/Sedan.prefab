@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8099533217958522141}
   - component: {fileID: 8099533217959518049}
   - component: {fileID: 8107495417512825745}
+  - component: {fileID: 4858186249173259767}
   m_Layer: 0
   m_Name: Sedan
   m_TagString: Untagged
@@ -97,11 +98,24 @@ MeshCollider:
   m_GameObject: {fileID: 8099533217957432219}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2dfd189627cfe43479265db2e35e552c, type: 3}
+--- !u!65 &4858186249173259767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099533217957432219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1721282, y: 10, z: 5.1654243}
+  m_Center: {x: -0.0000015497208, y: 0.8805966, z: 0.11457074}
 --- !u!1 &8099533217957481159
 GameObject:
   m_ObjectHideFlags: 0
