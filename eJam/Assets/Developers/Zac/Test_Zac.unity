@@ -169,9 +169,9 @@ MonoBehaviour:
   CurrentState: 0
   MyCamera: {fileID: 1865597580}
   MyRigidBody: {fileID: 692698025}
-  MaxSpeed: 5
-  Acceleration: 5
-  Deceleration: 5
+  MaxSpeed: 25
+  Acceleration: 100
+  Deceleration: 100
 --- !u!4 &58869973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 481848, guid: fa07ca939fb86614e840203d85f23f08,

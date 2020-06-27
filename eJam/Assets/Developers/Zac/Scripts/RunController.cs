@@ -45,11 +45,10 @@ public class RunController : MonoBehaviour
         // Get parent of camera because camera of parent isn't rotated down but in the direction of the player.
         cameraRelativeMovementInput = MyCamera.transform.parent.TransformDirection(baseMovementInput);
 
-        Debug.Log(lerpingMovementInput.magnitude);
-        lerpingMovementInput = Vector3.Lerp(lerpingMovementInput, cameraRelativeMovementInput, Time.deltaTime) * currentSpeed;
-        MyRigidBody.velocity = lerpingMovementInput;
+        lerpingMovementInput = Vector3.Lerp(lerpingMovementInput, cameraRelativeMovementInput, 5 * Time.deltaTime);
+        MyRigidBody.velocity = lerpingMovementInput * currentSpeed;
 
-        Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + lerpingMovementInput, Color.black);
+        Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + lerpingMovementInput, Color.red);
         Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + cameraRelativeMovementInput, Color.blue);
     }
 
