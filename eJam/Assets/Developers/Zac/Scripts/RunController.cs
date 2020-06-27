@@ -16,6 +16,8 @@ public class RunController : MonoBehaviour
     public float MaxSpeed = 50.0f;
     public float Acceleration = 25.0f;
     public float Deceleration = 25.0f;
+    public Transform PushTransform; // The forward vector of this object is the direction the player will be pushed in
+    public float PushForce = 5.0f;
 
     [Header("Jumping Values")]
     public float Gravity = 20.0f;
@@ -33,8 +35,6 @@ public class RunController : MonoBehaviour
     Vector3 baseMovementInput;
     Vector3 cameraRelativeMovementInput;
     Vector3 lerpingMovementInput = Vector3.zero;
-
-    Vector3 pushDirection;
 
     RaycastHit GroundHit;
     CapsuleCollider MyCollider;
@@ -101,7 +101,12 @@ public class RunController : MonoBehaviour
     void HandleMovement()
     {
         lerpingMovementInput = Vector3.Lerp(lerpingMovementInput, cameraRelativeMovementInput, 5 * Time.deltaTime);
-        MyRigidBody.velocity = new Vector3(lerpingMovementInput.x * currentSpeed, currentJump, lerpingMovementInput.z * currentSpeed);
+        Vector3 finalPushForce = Vector3.zero;
+        if (PushTransform)
+        {
+            finalPushForce = (PushTransform.forward * PushForce);
+        }
+        MyRigidBody.velocity = new Vector3(lerpingMovementInput.x * currentSpeed, currentJump, lerpingMovementInput.z * currentSpeed) + finalPushForce;
     }
 
     void CheckForGround()
