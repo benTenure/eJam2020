@@ -50,6 +50,8 @@ public class RunController : MonoBehaviour
 
     bool bDropEnumRunning = false;
 
+    Vector3 lastLookingDir;
+
     private void Start()
     {
         PushForce = MinPushForce;
@@ -135,12 +137,18 @@ public class RunController : MonoBehaviour
         if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
             MyRigidBody.transform.rotation = Quaternion.LookRotation(lerpingMovementInput);
+            lastLookingDir = lerpingMovementInput.normalized;
+        }
+        else if (lastLookingDir != Vector3.zero)
+        {
+            MyRigidBody.transform.rotation = Quaternion.LookRotation(lastLookingDir);
         }
     }
 
+
     void CheckForGround()
     {
-        Physics.Raycast(MyRigidBody.transform.position, Vector3.down, out GroundHit, (MyCollider.height * 0.5f) + 0.1f);
+        Physics.Raycast(MyCollider.transform.position + MyCollider.center, Vector3.down, out GroundHit, (MyCollider.height * 0.5f) + 0.1f);
         if (CurrentState == PlayerState.grounded)
         {
             if (!GroundHit.transform)
@@ -185,9 +193,9 @@ public class RunController : MonoBehaviour
 
     void UpdateCurrentSpeed()
     {
+        HandleFacingDirection();
         if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
-            HandleFacingDirection();
             currentSpeed += Acceleration * Time.deltaTime;
         }
         else if (currentSpeed > 0)
@@ -287,14 +295,22 @@ public class RunController : MonoBehaviour
         return returnTransform;
     }
 
-    public void DropOffPedestrians(GameObject destination)
+    public bool DropOffPedestrians(GameObject destination)
     {
-        if (!bGrabEnumRunning && PedestrianRefs.Count > 0)
+        if (!bGrabEnumRunning && !bDropEnumRunning && PedestrianRefs.Count > 0)
         {
             bDropEnumRunning = true;
             PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
             StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+            return true;
         }
+        return false;
+    }
+
+    void DropOffManual(GameObject destination)
+    {
+        PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
+        StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
     }
 
     public Vector3 ReturnRandomVectorWithinBounds(GameObject bounds)
@@ -333,7 +349,7 @@ public class RunController : MonoBehaviour
 
         if (PedestrianRefs.Count > 0)
         {
-            DropOffPedestrians(destination);
+            DropOffManual(destination);
         }
         else
         {
