@@ -45,6 +45,7 @@ public class RunController : MonoBehaviour
 
     void jump()
     {
+        CurrentState = PlayerState.jumping;
         currentJump = JumpStrength;
 
         // Once you enter the jumping state, decrement the current jump value until you reach the lower bound or collide with the ground.
@@ -70,7 +71,7 @@ public class RunController : MonoBehaviour
         }
         else if (CurrentState == PlayerState.jumping)
         {
-
+            HandleGravity();
         }
         else if (CurrentState == PlayerState.falling)
         {
