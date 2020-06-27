@@ -69,12 +69,6 @@ public class RunController : MonoBehaviour
                 currentJump = JumpStrength;
             }
         }
-
-        // Once you enter the jumping state, decrement the current jump value until you reach the lower bound or collide with the ground.
-        //if (currentJump > -50)
-        //{
-        //    currentJump -= 20 * Time.deltaTime;
-        //}
     }
 
     // Update is called once per frame

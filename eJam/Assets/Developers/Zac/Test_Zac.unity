@@ -1547,44 +1547,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7230416317361775381, guid: 45ba1911edf93c84ea5fd1a585952757,
         type: 3}
-      propertyPath: Gravity
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230416317361775381, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: JumpStrength
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230416317361775381, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
       propertyPath: RespawnTransform
       value: 
       objectReference: {fileID: 407901523}
-    - target: {fileID: 7230416317361775381, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: DoubleJumpStrength
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7230416317361775387, guid: 45ba1911edf93c84ea5fd1a585952757,
         type: 3}
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
-    - target: {fileID: 7230416317765965909, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230416317765965914, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: d23fda518fce6114789fc2bc415f00a9,
-        type: 2}
-    - target: {fileID: 7230416317765965915, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 0c0de60b8c71ff348af54391059bc4ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ba1911edf93c84ea5fd1a585952757, type: 3}
