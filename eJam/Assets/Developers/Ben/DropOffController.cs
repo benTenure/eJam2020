@@ -33,7 +33,7 @@ public class DropOffController : MonoBehaviour
 
     private void GetDropOffLocation(RunController player)
     {
-        var worldSpaceVector = transform.TransformPoint(transform.position);
+        var worldSpaceVector = dropOffZone.transform.TransformPoint(transform.position);
 
         var colliderScaleX = dropOffZone.transform.localScale.x / 2;
         var colliderScaleZ = dropOffZone.transform.localScale.z / 2;
