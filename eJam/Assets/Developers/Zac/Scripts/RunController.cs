@@ -42,7 +42,7 @@ public class RunController : MonoBehaviour
 
     bool bDoubleJumped = false;
 
-    public List<PedestrianController> PedestrianStack = new List<PedestrianController>();
+    public List<PedestrianController> PedestrianQueue = new List<PedestrianController>();
     public List<PedestrianController> PedestrianRefs = new List<PedestrianController>();
     IEnumerator GrabEnumRef;
     bool bGrabEnumRunning = false;
@@ -53,15 +53,21 @@ public class RunController : MonoBehaviour
         // Y is up in Unity, so we want the Y of the vector2 to actually be Z.
         inputActions.PlayerControls.Move.performed += ctx => baseMovementInput = new Vector3(ctx.ReadValue<Vector2>().x, 0.0f, ctx.ReadValue<Vector2>().y);
         inputActions.PlayerControls.Jump.performed += ctx => jump();
+        inputActions.PlayerControls.Drop.performed += ctx => drop();
 
         MyCollider = MyRigidBody.GetComponent<CapsuleCollider>();
+    }
+
+    void drop()
+    {
+        DropOffPedestrians(MyRigidBody.transform.position + PushTransform.forward);
     }
 
     void jump()
     {
         if (CurrentState == PlayerState.grounded || (bCanDoubleJump && !bDoubleJumped))
         {
-            if(CurrentState != PlayerState.grounded)
+            if (CurrentState != PlayerState.grounded)
             {
                 bDoubleJumped = true;
             }
@@ -88,7 +94,7 @@ public class RunController : MonoBehaviour
 
         if (CurrentState == PlayerState.grounded)
         {
-            
+
         }
         else if (CurrentState == PlayerState.jumping)
         {
@@ -152,11 +158,11 @@ public class RunController : MonoBehaviour
     void HandleGravity()
     {
         currentJump -= Gravity * Time.deltaTime;
-        if(currentJump <= 0)
+        if (currentJump <= 0)
         {
             CurrentState = PlayerState.falling;
         }
-        if(MyRigidBody.transform.position.y < -200)
+        if (MyRigidBody.transform.position.y < -200)
         {
             if (RespawnTransform)
             { // Just in case the player somehow falls out of the level
@@ -171,7 +177,7 @@ public class RunController : MonoBehaviour
 
     void UpdateCurrentSpeed()
     {
-        if(baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
+        if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
             HandleFacingDirection();
             currentSpeed += Acceleration * Time.deltaTime;
@@ -182,11 +188,11 @@ public class RunController : MonoBehaviour
         }
 
         // Cuz I'm paranoid
-        if(currentSpeed > MaxSpeed)
+        if (currentSpeed > MaxSpeed)
         {
             currentSpeed = MaxSpeed;
         }
-        if(currentSpeed < 0)
+        if (currentSpeed < 0)
         {
             currentSpeed = 0;
         }
@@ -204,9 +210,9 @@ public class RunController : MonoBehaviour
 
     public void GrabPedestrian(PedestrianController pedestrianRef)
     {
-        if (!PedestrianStack.Contains(pedestrianRef))
+        if (!PedestrianQueue.Contains(pedestrianRef))
         {
-            PedestrianStack.Add(pedestrianRef);
+            PedestrianQueue.Add(pedestrianRef);
             if (!bGrabEnumRunning)
             {
                 startGrabEnum(pedestrianRef);
@@ -235,13 +241,13 @@ public class RunController : MonoBehaviour
         }
         pedestrianRef.transform.position = (destination.position + Vector3.up);
         pedestrianRef.transform.rotation = PedestrianParent.rotation;
-        PedestrianStack.Remove(pedestrianRef);
+        PedestrianQueue.Remove(pedestrianRef);
         PedestrianRefs.Add(pedestrianRef);
         pedestrianRef.transform.parent = PedestrianParent.transform;
         bGrabEnumRunning = false;
-        if (PedestrianStack.Count > 0)
+        if (PedestrianQueue.Count > 0)
         {
-            startGrabEnum(PedestrianStack[PedestrianStack.Count - 1]);
+            startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
         }
     }
 
@@ -249,7 +255,7 @@ public class RunController : MonoBehaviour
     {
         Transform returnTransform;
 
-        if(PedestrianRefs.Count == 0)
+        if (PedestrianRefs.Count == 0)
         {
             returnTransform = PedestrianParent;
         }
@@ -259,5 +265,30 @@ public class RunController : MonoBehaviour
         }
 
         return returnTransform;
+    }
+
+    void DropOffPedestrians(Vector3 destination)
+    {
+        PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
+        StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+    }
+
+    IEnumerator DropPedestrian(PedestrianController pedestrianRef, Vector3 destination)
+    {
+        Vector3 dir = destination - pedestrianRef.transform.position;
+        float mag = dir.magnitude;
+        while (mag > 0.5f)
+        {
+            dir = destination - pedestrianRef.transform.position;
+            mag = dir.magnitude;
+            pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
+            yield return new WaitForSeconds(0.01f);
+        }
+        PedestrianRefs.Remove(pedestrianRef);
+        
+        if (PedestrianRefs.Count > 0)
+        {
+            DropOffPedestrians(destination);
+        }
     }
 }
