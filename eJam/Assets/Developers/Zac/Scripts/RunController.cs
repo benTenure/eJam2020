@@ -224,14 +224,17 @@ public class RunController : MonoBehaviour
     IEnumerator InterpPedestrian(PedestrianController pedestrianRef, Transform destination)
     {
         bGrabEnumRunning = true;
-        float mag = (destination.position - pedestrianRef.transform.position).magnitude;
-        Debug.Log(mag);
-        while (mag >= 0.5f)
+        Vector3 dir = (destination.position + Vector3.up) - pedestrianRef.transform.position;
+        float mag = dir.magnitude;
+        while (mag > 0.5f)
         {
-            mag = (destination.position - pedestrianRef.transform.position).magnitude;
-            pedestrianRef.transform.position += (((destination.position + Vector3.up) - pedestrianRef.transform.position) * 10.0f) * Time.deltaTime;
+            dir = (destination.position + Vector3.up) - pedestrianRef.transform.position;
+            mag = dir.magnitude;
+            pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
+        pedestrianRef.transform.position = (destination.position + Vector3.up);
+        pedestrianRef.transform.rotation = PedestrianParent.rotation;
         PedestrianStack.Remove(pedestrianRef);
         PedestrianRefs.Add(pedestrianRef);
         pedestrianRef.transform.parent = PedestrianParent.transform;
