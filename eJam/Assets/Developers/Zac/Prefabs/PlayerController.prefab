@@ -116,13 +116,32 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3380834765728800062}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d23fda518fce6114789fc2bc415f00a9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!95 &1742645024
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380834765728800062}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62978b743b7f6354bb5a50f7c925b35d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7230416317361775387
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +190,7 @@ MonoBehaviour:
   CurrentState: 0
   MyCamera: {fileID: 7230416318742897008}
   MyRigidBody: {fileID: 1675477290853453966}
-  PedestrianParent: {fileID: 7230416317818997511}
+  PedestrianParent: {fileID: 2753632}
   MaxSpeed: 25
   Acceleration: 75
   Deceleration: 100
