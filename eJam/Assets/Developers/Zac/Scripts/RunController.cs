@@ -220,11 +220,19 @@ public class RunController : MonoBehaviour
     {
         if (!PedestrianQueue.Contains(pedestrianRef))
         {
-            PedestrianQueue.Add(pedestrianRef);
+            if (bDropEnumRunning)
+            {
+                PedestrianRefs.Insert(0, pedestrianRef);
+            }
+            else
+            {
+                PedestrianQueue.Add(pedestrianRef);
+            }
             if (!bGrabEnumRunning && !bDropEnumRunning)
             {
                 startGrabEnum(pedestrianRef);
             }
+
         }
     }
 
@@ -281,7 +289,7 @@ public class RunController : MonoBehaviour
 
     public void DropOffPedestrians(Vector3 destination)
     {
-        if (!bGrabEnumRunning && !bDropEnumRunning)
+        if (!bGrabEnumRunning && PedestrianRefs.Count > 0)
         {
             bDropEnumRunning = true;
             PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
@@ -317,10 +325,6 @@ public class RunController : MonoBehaviour
         else
         {
             bDropEnumRunning = false;
-            if (PedestrianQueue.Count > 0)
-            {
-                startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
-            }
         }
     }
 }
