@@ -48,6 +48,8 @@ public class RunController : MonoBehaviour
     IEnumerator GrabEnumRef;
     bool bGrabEnumRunning = false;
 
+    bool bDropEnumRunning = false;
+
     private void Start()
     {
         PushForce = MinPushForce;
@@ -130,7 +132,7 @@ public class RunController : MonoBehaviour
 
     void HandleFacingDirection()
     {
-        if (lerpingMovementInput != Vector3.zero)
+        if (baseMovementInput.magnitude > 0.2f && currentSpeed < MaxSpeed)
         {
             MyRigidBody.transform.rotation = Quaternion.LookRotation(lerpingMovementInput);
         }
@@ -218,11 +220,19 @@ public class RunController : MonoBehaviour
     {
         if (!PedestrianQueue.Contains(pedestrianRef))
         {
-            PedestrianQueue.Add(pedestrianRef);
-            if (!bGrabEnumRunning)
+            if (bDropEnumRunning)
+            {
+                PedestrianRefs.Insert(0, pedestrianRef);
+            }
+            else
+            {
+                PedestrianQueue.Add(pedestrianRef);
+            }
+            if (!bGrabEnumRunning && !bDropEnumRunning)
             {
                 startGrabEnum(pedestrianRef);
             }
+
         }
     }
 
@@ -251,10 +261,13 @@ public class RunController : MonoBehaviour
         PedestrianRefs.Add(pedestrianRef);
         pedestrianRef.transform.parent = PedestrianParent.transform;
         PushForce += 1.0f;
-        bGrabEnumRunning = false;
         if (PedestrianQueue.Count > 0)
         {
             startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
+        }
+        else
+        {
+            bGrabEnumRunning = false;
         }
     }
 
@@ -274,10 +287,14 @@ public class RunController : MonoBehaviour
         return returnTransform;
     }
 
-    void DropOffPedestrians(Vector3 destination)
+    public void DropOffPedestrians(Vector3 destination)
     {
-        PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
-        StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+        if (!bGrabEnumRunning && PedestrianRefs.Count > 0)
+        {
+            bDropEnumRunning = true;
+            PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
+            StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+        }
     }
 
     IEnumerator DropPedestrian(PedestrianController pedestrianRef, Vector3 destination)
@@ -288,7 +305,7 @@ public class RunController : MonoBehaviour
         {
             dir = destination - pedestrianRef.transform.position;
             mag = dir.magnitude;
-            pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
+            pedestrianRef.transform.position += (dir.normalized * 200.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
         pedestrianRef.transform.position = destination;
@@ -304,6 +321,10 @@ public class RunController : MonoBehaviour
         if (PedestrianRefs.Count > 0)
         {
             DropOffPedestrians(destination);
+        }
+        else
+        {
+            bDropEnumRunning = false;
         }
     }
 }
