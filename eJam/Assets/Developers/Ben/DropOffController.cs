@@ -40,7 +40,7 @@ public class DropOffController : MonoBehaviour
         
         var randomX = Random.Range(dropOffZone.transform.position.x - colliderScaleX, dropOffZone.transform.position.x + colliderScaleX);
         var randomZ = Random.Range(dropOffZone.transform.position.z - colliderScaleZ, dropOffZone.transform.position.z + colliderScaleZ);
-        var randomDropOffVector = new Vector3(randomX, 0f, randomZ);
+        var randomDropOffVector = new Vector3(randomX, dropOffZone.transform.position.y, randomZ);
         
         print(randomDropOffVector);
         player.DropOffPedestrians(randomDropOffVector);
