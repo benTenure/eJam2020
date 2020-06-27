@@ -20,6 +20,11 @@ public class RunController : MonoBehaviour
     [Header("Jumping Values")]
     public float Gravity = 20.0f;
     public float JumpStrength = 20.0f;
+    public float DoubleJumpStrength = 25.0f;
+    public bool bCanDoubleJump = true;
+
+    [Header("Kill-Z Failsafe Transform")]
+    public Transform RespawnTransform;
 
     float currentSpeed = 0.0f;
     float currentJump = 0.0f;
@@ -28,10 +33,13 @@ public class RunController : MonoBehaviour
     Vector3 baseMovementInput;
     Vector3 cameraRelativeMovementInput;
     Vector3 lerpingMovementInput = Vector3.zero;
-    bool bJumped;
+
+    Vector3 pushDirection;
 
     RaycastHit GroundHit;
     CapsuleCollider MyCollider;
+
+    bool bDoubleJumped = false;
 
     private void Awake()
     {
@@ -45,8 +53,22 @@ public class RunController : MonoBehaviour
 
     void jump()
     {
-        CurrentState = PlayerState.jumping;
-        currentJump = JumpStrength;
+        if (CurrentState == PlayerState.grounded || (bCanDoubleJump && !bDoubleJumped))
+        {
+            if(CurrentState != PlayerState.grounded)
+            {
+                bDoubleJumped = true;
+            }
+            CurrentState = PlayerState.jumping;
+            if (bDoubleJumped)
+            {
+                currentJump = DoubleJumpStrength;
+            }
+            else
+            {
+                currentJump = JumpStrength;
+            }
+        }
 
         // Once you enter the jumping state, decrement the current jump value until you reach the lower bound or collide with the ground.
         //if (currentJump > -50)
@@ -62,12 +84,11 @@ public class RunController : MonoBehaviour
         // Get parent of camera because camera of parent isn't rotated down but in the direction of the player.
         // Ensure camera itself only rotates on X, but parent rotates on Y
         cameraRelativeMovementInput = MyCamera.transform.parent.TransformDirection(baseMovementInput);
+        CheckForGround();
 
-        Physics.Raycast(MyRigidBody.transform.position, Vector3.down, out GroundHit, MyCollider.height + 0.1f);
-        
         if (CurrentState == PlayerState.grounded)
         {
-            CheckForFallOff();
+            
         }
         else if (CurrentState == PlayerState.jumping)
         {
@@ -75,9 +96,8 @@ public class RunController : MonoBehaviour
         }
         else if (CurrentState == PlayerState.falling)
         {
-
+            HandleGravity();
         }
-
 
         HandleMovement();
         Debug.DrawLine(MyRigidBody.transform.position, MyRigidBody.transform.position + lerpingMovementInput, Color.red);
@@ -90,18 +110,49 @@ public class RunController : MonoBehaviour
         MyRigidBody.velocity = new Vector3(lerpingMovementInput.x * currentSpeed, currentJump, lerpingMovementInput.z * currentSpeed);
     }
 
-    void CheckForFallOff()
+    void CheckForGround()
     {
-        if(!GroundHit.transform)
+        Physics.Raycast(MyRigidBody.transform.position, Vector3.down, out GroundHit, (MyCollider.height * 0.5f) + 0.1f);
+        if (CurrentState == PlayerState.grounded)
         {
-            CurrentState = PlayerState.falling;
-            currentJump = 0.0f;
+            if (!GroundHit.transform)
+            {
+                CurrentState = PlayerState.falling;
+                currentJump = 0.0f;
+            }
+        }
+        //else if (CurrentState == PlayerState.jumping)
+        //{
+        //}
+        else if (CurrentState == PlayerState.falling)
+        {
+            if (GroundHit.transform)
+            {
+                CurrentState = PlayerState.grounded;
+                bDoubleJumped = false;
+                currentJump = 0.0f;
+            }
         }
     }
 
     void HandleGravity()
     {
-
+        currentJump -= Gravity * Time.deltaTime;
+        if(currentJump <= 0)
+        {
+            CurrentState = PlayerState.falling;
+        }
+        if(MyRigidBody.transform.position.y < -200)
+        {
+            if (RespawnTransform)
+            { // Just in case the player somehow falls out of the level
+                MyRigidBody.transform.position = RespawnTransform.position;
+            }
+            else
+            {
+                Debug.Log("RunController.cs: Hey! You didn't set a failsafe respawn point in the scene!");
+            }
+        }
     }
 
     void UpdateCurrentSpeed()
