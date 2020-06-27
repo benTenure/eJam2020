@@ -11,6 +11,7 @@ public class RunController : MonoBehaviour
     [Header("Game Object Refs")]
     public Camera MyCamera;
     public Rigidbody MyRigidBody;
+    public Transform PedestrianParent;
 
     [Header("Movement Values")]
     public float MaxSpeed = 50.0f;
@@ -40,6 +41,10 @@ public class RunController : MonoBehaviour
     CapsuleCollider MyCollider;
 
     bool bDoubleJumped = false;
+
+    List<PedestrianController> PedestrianStack;
+    List<PedestrianController> PedestrianRefs;
+    IEnumerator GrabEnumRef;
 
     private void Awake()
     {
@@ -184,5 +189,54 @@ public class RunController : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Disable();
+    }
+
+    public void GrabPedestrian(PedestrianController pedestrianRef)
+    {
+        PedestrianStack.Add(pedestrianRef);
+        startGrabEnum(pedestrianRef);
+    }
+
+    void startGrabEnum(PedestrianController pedestrianRef)
+    {
+        if (GrabEnumRef == null)
+        {
+            Vector3 destination = GetPedestrianBackDestination();
+            GrabEnumRef = InterpPedestrian(pedestrianRef, destination);
+            StartCoroutine(GrabEnumRef);
+        }
+    }
+
+    IEnumerator InterpPedestrian(PedestrianController pedestrianRef, Vector3 destination)
+    {
+        float mag = (destination - pedestrianRef.transform.position).magnitude;
+        while (mag >= 0.2f)
+        {
+            mag = (destination - pedestrianRef.transform.position).magnitude;
+            pedestrianRef.transform.Translate(destination - pedestrianRef.transform.position);
+            yield return new WaitForSeconds(0.01f);
+        }
+        PedestrianStack.Remove(pedestrianRef);
+        PedestrianRefs.Add(pedestrianRef);
+        if (PedestrianStack.Count > 0)
+        {
+            startGrabEnum(PedestrianStack[PedestrianStack.Count - 1]);
+        }
+    }
+
+    Vector3 GetPedestrianBackDestination()
+    {
+        Vector3 returnVector = new Vector3();
+
+        if(PedestrianRefs.Count == 0)
+        {
+            returnVector = PedestrianParent.position;
+        }
+        else
+        {
+            returnVector = PedestrianRefs[PedestrianRefs.Count - 1].transform.position + Vector3.up;
+        }
+
+        return returnVector;
     }
 }
