@@ -31,4 +31,4 @@ MonoBehaviour:
   - {fileID: 6154505232641239970, guid: af475010bd645584b9b7a7ed4225e758, type: 3}
   SafeZones: []
   lengthGenerated: 8
-  scrollSpeed: 0
+  scrollSpeed: 10
