@@ -140,7 +140,7 @@ public class RunController : MonoBehaviour
 
     void CheckForGround()
     {
-        Physics.Raycast(MyRigidBody.transform.position, Vector3.down, out GroundHit, (MyCollider.height * 0.5f) + 0.1f);
+        Physics.Raycast(MyCollider.transform.position + MyCollider.center, Vector3.down, out GroundHit, (MyCollider.height * 0.5f) + 0.1f);
         if (CurrentState == PlayerState.grounded)
         {
             if (!GroundHit.transform)

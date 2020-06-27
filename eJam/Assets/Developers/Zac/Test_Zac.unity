@@ -2968,12 +2968,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 336e41012787eef4d93027e182962254, type: 3}
---- !u!4 &1191102309 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2753632, guid: 45ba1911edf93c84ea5fd1a585952757,
-    type: 3}
-  m_PrefabInstance: {fileID: 7230416317384844284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1307258407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4879,17 +4873,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2753632, guid: 45ba1911edf93c84ea5fd1a585952757, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753632, guid: 45ba1911edf93c84ea5fd1a585952757, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753634, guid: 45ba1911edf93c84ea5fd1a585952757, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 1675477290853453966, guid: 45ba1911edf93c84ea5fd1a585952757,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7230416317361775380, guid: 45ba1911edf93c84ea5fd1a585952757,
         type: 3}
@@ -4956,30 +4943,10 @@ PrefabInstance:
       propertyPath: RespawnTransform
       value: 
       objectReference: {fileID: 407901523}
-    - target: {fileID: 7230416317361775381, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: PedestrianParent
-      value: 
-      objectReference: {fileID: 1191102309}
     - target: {fileID: 7230416317361775387, guid: 45ba1911edf93c84ea5fd1a585952757,
         type: 3}
       propertyPath: m_Name
       value: PlayerController
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230416317818997511, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230416317818997511, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230416317818997511, guid: 45ba1911edf93c84ea5fd1a585952757,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ba1911edf93c84ea5fd1a585952757, type: 3}
