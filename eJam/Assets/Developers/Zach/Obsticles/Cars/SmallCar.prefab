@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 285634063394291283}
   - component: {fileID: 285634063393306223}
   - component: {fileID: 220870892003622959}
+  - component: {fileID: 68227082230832941}
   m_Layer: 0
   m_Name: SmallCar
   m_TagString: Untagged
@@ -96,11 +97,24 @@ MeshCollider:
   m_GameObject: {fileID: 285634063395270581}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5f72e1579cd001244802c30b332dae70, type: 3}
+--- !u!65 &68227082230832941
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285634063395270581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0683348, y: 10, z: 4.074531}
+  m_Center: {x: -0.012611389, y: 0.9477265, z: 0.12095243}
 --- !u!1 &285634063395272245
 GameObject:
   m_ObjectHideFlags: 0

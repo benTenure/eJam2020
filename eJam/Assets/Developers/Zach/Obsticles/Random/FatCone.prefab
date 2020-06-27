@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3653898801541353484}
   - component: {fileID: 3653898801540330024}
   - component: {fileID: 3625881094242397228}
+  - component: {fileID: 6829107689833255348}
   m_Layer: 0
   m_Name: FatCone
   m_TagString: Untagged
@@ -94,3 +95,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43363757776587622, guid: 57cf152f8511e664889b34ca9f5c11fc, type: 2}
+--- !u!65 &6829107689833255348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653898801542354956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9698312, y: 10, z: 0.9223685}
+  m_Center: {x: -0.000015258789, y: 0.51409614, z: -0.000002861023}

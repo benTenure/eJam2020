@@ -528,6 +528,7 @@ GameObject:
   - component: {fileID: 2604855293905811413}
   - component: {fileID: 2604855293906761309}
   - component: {fileID: 2648825159917704953}
+  - component: {fileID: 6483621855507707886}
   m_Layer: 0
   m_Name: MuscleCar
   m_TagString: Untagged
@@ -612,11 +613,24 @@ MeshCollider:
   m_GameObject: {fileID: 2604855293909007477}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 823ed423ae6ba0d4589ddb8fe51e7f14, type: 3}
+--- !u!65 &6483621855507707886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604855293909007477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.429984, y: 10, z: 5.642581}
+  m_Center: {x: 0.000000059604645, y: 0.8365443, z: 0.13018548}
 --- !u!1 &2604855293909022347
 GameObject:
   m_ObjectHideFlags: 0
