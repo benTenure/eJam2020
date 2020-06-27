@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class DropOffController : MonoBehaviour
 {
-    public Transform dropOffLocation;
+    // public Transform dropOffLocation;
+    public GameObject dropOffZone;
     
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,26 @@ public class DropOffController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.GetComponent<RunController>();
+        if (other.CompareTag("Player"))
+        {
+            print("Creating drop off location...");
+            var player = other.GetComponent<RunController>();
+            GetDropOffLocation(player);
+        }
+    }
 
-        var randomX = Random.Range();
-        var randomZ = Random.Range();
-        var randomDropOffVector = new Vector3();
+    private void GetDropOffLocation(RunController player)
+    {
+        var worldSpaceVector = transform.TransformPoint(transform.position);
+
+        var colliderScaleX = dropOffZone.transform.localScale.x / 2;
+        var colliderScaleZ = dropOffZone.transform.localScale.z / 2;
+        
+        var randomX = Random.Range(worldSpaceVector.x - colliderScaleX, worldSpaceVector.x + colliderScaleX);
+        var randomZ = Random.Range(worldSpaceVector.z - colliderScaleZ, worldSpaceVector.z + colliderScaleZ);
+        var randomDropOffVector = new Vector3(randomX, 0f, randomZ);
+        
+        print(randomDropOffVector);
+        player.DropOffPedestrians(randomDropOffVector);
     }
 }
