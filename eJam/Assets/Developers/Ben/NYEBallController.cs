@@ -83,6 +83,7 @@ public class NYEBallController : MonoBehaviour
         _rollToFinish = true;
         _startTime = Time.time;
         other.gameObject.SetActive(false);
-        GameObject.FindObjectOfType<WorldGeneration>().SetScrollModifier(0);
+        GameManagerScript.Instance.PlayerDied();
+        GameObject.FindObjectOfType<WorldGeneration>()?.SetScrollModifier(0);
     }
 }

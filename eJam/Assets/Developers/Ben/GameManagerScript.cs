@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
+// using UnityEditorInternal;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
@@ -9,6 +9,8 @@ public class GameManagerScript : MonoBehaviour
 
     public IntVariable distance;
     public IntVariable people;
+
+    public GameUIManager ui;
     
     public static GameManagerScript Instance => _instance;
 
@@ -31,5 +33,10 @@ public class GameManagerScript : MonoBehaviour
     public void AddDistanceTraveled(int amount)
     {
         distance.value += amount;
+    }
+
+    public void PlayerDied()
+    {
+        ui.SwitchToDeathScreen();
     }
 }

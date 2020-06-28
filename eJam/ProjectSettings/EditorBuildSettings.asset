@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Developers/Ben/TEST_SUPER_SECRET.unity
+    guid: 05998fc013fc9cc4abc4f4f1dac4f5d1
   m_configObjects: {}
