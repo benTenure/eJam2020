@@ -13,6 +13,8 @@ public class PedestrianController : MonoBehaviour
     private bool _isPickedUp = false;
     private static readonly int PickUp = Animator.StringToHash("PickUp");
 
+    public GameObject[] Hats;
+
     private void PickUpPedestrian()
     {
         if (!_isPickedUp)
@@ -60,6 +62,23 @@ public class PedestrianController : MonoBehaviour
         else
         {
             transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, transform.rotation.w);
+        }
+    }
+
+    private void OnEnable()
+    {
+        randomizeMyAppearance();   
+    }
+
+    void randomizeMyAppearance()
+    {
+        if(Hats.Length > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, Hats.Length - 1);
+            for(int i = 0; i < Hats.Length; i++)
+            {
+                Hats[i].SetActive(i == randomIndex);
+            }
         }
     }
 }
