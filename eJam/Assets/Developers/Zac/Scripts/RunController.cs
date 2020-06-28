@@ -305,11 +305,15 @@ public class RunController : MonoBehaviour
         }
         Vector3 dir = (destination.position + ((destination.up * testFactor) * 0.25f)) - pedestrianRef.transform.position;
         float mag = dir.magnitude;
-        while (mag > 0.5f)
+
+        float timer = 0.0f;
+
+        while (timer < 0.5f)
         {
             dir = (destination.position + ((destination.up * testFactor) * 0.25f)) - pedestrianRef.transform.position;
             mag = dir.magnitude;
-            pedestrianRef.transform.position += (dir.normalized * 50.0f) * Time.deltaTime;
+            pedestrianRef.transform.position += (dir.normalized * 20.0f) * Time.deltaTime;
+            timer += 0.1f;
             yield return new WaitForSeconds(0.01f);
         }
         pedestrianRef.transform.position = (destination.position + ((destination.up * testFactor) * 0.25f));
