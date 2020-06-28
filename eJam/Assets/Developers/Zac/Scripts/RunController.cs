@@ -147,6 +147,14 @@ public class RunController : MonoBehaviour
         AnimationController.SetBool("Jumping", CurrentState == PlayerState.jumping);
         AnimationController.SetBool("Falling", CurrentState == PlayerState.falling);
         AnimationController.SetBool("Holding", PedestrianRefs.Count > 0);
+        if (currentSpeed > 0.1f)
+        {
+            AnimationController.speed = Mathf.Lerp(0.25f, 2.25f, currentSpeed / StartingMaxSpeed);
+        }
+        else
+        {
+            AnimationController.speed = 1.0f;
+        }
     }
 
     void HandleFacingDirection()
