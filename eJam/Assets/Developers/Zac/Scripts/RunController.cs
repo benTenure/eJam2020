@@ -385,6 +385,8 @@ public class RunController : MonoBehaviour
         }
         pedestrianRef.transform.position = randomDestination;
 
+        GameManagerScript.Instance.AddPeopleSaved(1);
+
         PedestrianRefs.Remove(pedestrianRef);
 
         MaxSpeed += PedestrianWeight;
