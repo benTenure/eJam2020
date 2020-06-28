@@ -90,6 +90,7 @@ public class RunController : MonoBehaviour
             if (CurrentState != PlayerState.grounded)
             {
                 bDoubleJumped = true;
+                AnimationController.SetTrigger("DoubleJump");
             }
             CurrentState = PlayerState.jumping;
             if (bDoubleJumped)
