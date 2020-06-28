@@ -45,7 +45,7 @@ public class NYEBallController : MonoBehaviour
         _lerpedColor = Color.Lerp(_cycledColors[_first], _cycledColors[_second], _t);
         
         ball.GetComponent<Renderer>().material.SetColor("_Color", _lerpedColor);
-        ball.GetComponent<Renderer>().material.SetColor("_Emission", _lerpedColor);
+        ball.GetComponent<Renderer>().material.SetColor("_EmissionColor", _lerpedColor * 5);
         
         _t += _lerpSpeed * Time.deltaTime;
 
