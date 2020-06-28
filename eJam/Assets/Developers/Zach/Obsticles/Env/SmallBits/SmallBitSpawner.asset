@@ -17,5 +17,9 @@ MonoBehaviour:
   - {fileID: 3265261430263166288, guid: 37b7724a6ecacb44f85eebca0861158b, type: 3}
   - {fileID: 5386976630690625227, guid: c30c5c25925a53040b114f8e8affd29a, type: 3}
   - {fileID: 7080943039800159155, guid: 0b31a73ee096bfd44af5d030dd46b63f, type: 3}
+  - {fileID: 7228465966170932070, guid: 8ed24ebb5ccbe5f4fa903fce07cab700, type: 3}
+  - {fileID: 7228465966170932070, guid: b4aed82b260ec534198fb58ada8a05ed, type: 3}
+  - {fileID: 7228465966170932070, guid: c3e7ad1ef38c11b46a5e0ab83ef5ee93, type: 3}
+  - {fileID: 7228465966170932070, guid: 6b192d01f3145c942b24479943c32c9d, type: 3}
   spawnChance: 47.3
   randomRotation: 1
