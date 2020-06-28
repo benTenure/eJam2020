@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbff151f5ebfaec49b2fc192ce2ed51d, type: 3}
+  m_Name: SmallBitSpawner
+  m_EditorClassIdentifier: 
+  obsticles:
+  - {fileID: 7139927018480324128, guid: 7881b8f1d7a82ae478a6064f43064fc9, type: 3}
+  - {fileID: 3265261430263166288, guid: 37b7724a6ecacb44f85eebca0861158b, type: 3}
+  - {fileID: 5386976630690625227, guid: c30c5c25925a53040b114f8e8affd29a, type: 3}
+  - {fileID: 7080943039800159155, guid: 0b31a73ee096bfd44af5d030dd46b63f, type: 3}
+  spawnChance: 47.3
+  randomRotation: 1

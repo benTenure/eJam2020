@@ -38,6 +38,11 @@ public class PedestrianController : MonoBehaviour
             PickUpPedestrian();
 
             var playerRef = other.transform.parent.GetComponent<RunController>();
+
+            if (GetComponent<AudioSource>())
+            {
+                GetComponent<AudioSource>().Play();
+            }
             
             if (playerRef)
             {
