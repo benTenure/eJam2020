@@ -11,6 +11,9 @@ public class GameManagerScript : MonoBehaviour
     public IntVariable people;
 
     public GameUIManager ui;
+
+    [SerializeField]
+    GameObject flatPlayer;
     
     public static GameManagerScript Instance => _instance;
 
@@ -35,8 +38,14 @@ public class GameManagerScript : MonoBehaviour
         distance.value += amount;
     }
 
-    public void PlayerDied()
+    public void PlayerDied(Transform player)
     {
+        if (flatPlayer)
+        {
+            GameObject newFlat = Instantiate(flatPlayer, null);
+            newFlat.transform.position = player.position;
+        }
+
         ui.SwitchToDeathScreen();
     }
 }
