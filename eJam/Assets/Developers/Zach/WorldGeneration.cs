@@ -23,8 +23,8 @@ public class WorldGeneration : MonoBehaviour
     }
 
     void GenerateStart(){
-        world = new GameObject();
-        world.transform.parent = transform;
+        world = transform.gameObject;
+        
 
         int minSafeDistance = data.minimumDistanceBetweenSafeZones;
         int maxSafeDistance = data.safeZoneDistanceVariance + minSafeDistance;
