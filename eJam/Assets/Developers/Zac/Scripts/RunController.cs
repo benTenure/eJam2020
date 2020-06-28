@@ -106,7 +106,6 @@ public class RunController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentJumpStrength);
         UpdateCurrentSpeed();
         // Get parent of camera because camera of parent isn't rotated down but in the direction of the player.
         // Ensure camera itself only rotates on X, but parent rotates on Y
