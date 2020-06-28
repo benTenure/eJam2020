@@ -65,6 +65,11 @@ public class GameUIManager : MonoBehaviour
         deathPanel.SetActive(true);
     }
 
+    public void PressedExit()
+    {
+        Application.Quit();
+    }
+
     private void OnEnable()
     {
         inputActions.Enable();
