@@ -146,6 +146,7 @@ public class RunController : MonoBehaviour
         AnimationController.SetBool("Grounded", CurrentState == PlayerState.grounded);
         AnimationController.SetBool("Jumping", CurrentState == PlayerState.jumping);
         AnimationController.SetBool("Falling", CurrentState == PlayerState.falling);
+        AnimationController.SetBool("Holding", PedestrianRefs.Count > 0);
     }
 
     void HandleFacingDirection()
