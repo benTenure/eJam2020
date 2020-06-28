@@ -80,5 +80,7 @@ public class PedestrianController : MonoBehaviour
                 Hats[i].SetActive(i == randomIndex);
             }
         }
+        int randomIdle = UnityEngine.Random.Range(0, 3);
+        anim.SetInteger("IdleChoice", randomIdle);
     }
 }
