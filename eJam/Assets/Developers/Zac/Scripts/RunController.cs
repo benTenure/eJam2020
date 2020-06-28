@@ -368,6 +368,7 @@ public class RunController : MonoBehaviour
             MaxSpeed = StartingMaxSpeed;
         }
 
+        pedestrianRef.transform.parent = destination.transform;
         if (PedestrianRefs.Count > 0)
         {
             DropOffManual(destination);
