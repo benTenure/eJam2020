@@ -53,12 +53,15 @@ public class RunController : MonoBehaviour
     IEnumerator GrabEnumRef;
     bool bGrabEnumRunning = false;
 
+    IEnumerator DropEnumRef;
     bool bDropEnumRunning = false;
 
     Vector3 lastLookingDir;
 
     const float PedestrianWeight = 1.0f;
     const float PedestrianJumpWeight = 1.5f;
+
+    //GameObject testRef;
 
     private void Start()
     {
@@ -80,6 +83,7 @@ public class RunController : MonoBehaviour
 
     void drop()
     {
+        //Destroy(testRef);
         // DropOffPedestrians(RespawnTransform.position);
     }
 
@@ -305,7 +309,7 @@ public class RunController : MonoBehaviour
         {
             dir = (destination.position + ((destination.up * testFactor) * 0.25f)) - pedestrianRef.transform.position;
             mag = dir.magnitude;
-            pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
+            pedestrianRef.transform.position += (dir.normalized * 50.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
         pedestrianRef.transform.position = (destination.position + ((destination.up * testFactor) * 0.25f));
@@ -353,6 +357,7 @@ public class RunController : MonoBehaviour
 
     public bool DropOffPedestrians(GameObject destination)
     {
+        //testRef = destination;
         if (!bGrabEnumRunning && !bDropEnumRunning && PedestrianRefs.Count > 0)
         {
             bDropEnumRunning = true;
@@ -366,7 +371,9 @@ public class RunController : MonoBehaviour
     void DropOffManual(GameObject destination)
     {
         PedestrianRefs[PedestrianRefs.Count - 1].transform.parent = null;
-        StartCoroutine(DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination));
+
+        DropEnumRef = DropPedestrian(PedestrianRefs[PedestrianRefs.Count - 1], destination);
+        StartCoroutine(DropEnumRef);
     }
 
     public Vector3 ReturnRandomVectorWithinBounds(GameObject bounds)
@@ -383,17 +390,26 @@ public class RunController : MonoBehaviour
 
     IEnumerator DropPedestrian(PedestrianController pedestrianRef, GameObject destination)
     {
-        var randomDestination = ReturnRandomVectorWithinBounds(destination);
+        var randomDestination = this.transform.position;
+        if (destination == null)
+        {
+            saveAllEarly();
+        }
+        else
+        {
+            randomDestination = ReturnRandomVectorWithinBounds(destination);
+        }
         Vector3 dir = randomDestination - pedestrianRef.transform.position;
         float mag = dir.magnitude;
-        while (mag > 0.5f)
-        {
-            dir = randomDestination - pedestrianRef.transform.position;
-            mag = dir.magnitude;
-            pedestrianRef.transform.position += (dir.normalized * 200.0f) * Time.deltaTime;
-            yield return new WaitForSeconds(0.01f);
-        }
+        //while (mag > 0.5f)
+        //{
+        //    dir = randomDestination - pedestrianRef.transform.position;
+        //    mag = dir.magnitude;
+        //    pedestrianRef.transform.position += (dir.normalized * 50.0f) * Time.deltaTime;
+        //    yield return new WaitForSeconds(0.01f);
+        //}
         pedestrianRef.transform.position = randomDestination;
+        yield return new WaitForSeconds(0.1f);
 
         GameManagerScript.Instance.AddPeopleSaved(1);
 
@@ -411,17 +427,42 @@ public class RunController : MonoBehaviour
             currentJumpStrength = StartJumpStrength;
         }
 
-        pedestrianRef.transform.parent = destination.transform;
-        if (PedestrianRefs.Count > 0)
+        if (destination == null)
         {
-            DropOffManual(destination);
+            saveAllEarly();
         }
         else
         {
-            bDropEnumRunning = false;
-            currentJumpStrength = StartJumpStrength;
-            MaxSpeed = StartingMaxSpeed;
+            pedestrianRef.transform.parent = destination.transform;
+            if (PedestrianRefs.Count > 0)
+            {
+                DropOffManual(destination);
+            }
+            else
+            {
+                bDropEnumRunning = false;
+                currentJumpStrength = StartJumpStrength;
+                MaxSpeed = StartingMaxSpeed;
 
+            }
         }
+    }
+
+    void saveAllEarly()
+    {
+        StopCoroutine(DropEnumRef);
+
+        bDropEnumRunning = false;
+        currentJumpStrength = StartJumpStrength;
+        MaxSpeed = StartingMaxSpeed;
+
+        GameManagerScript.Instance.AddPeopleSaved(PedestrianRefs.Count);
+
+        for(int i = 0; i < PedestrianRefs.Count; i++)
+        {
+            PedestrianRefs[i].transform.parent = null;
+            Destroy(PedestrianRefs[i].gameObject);
+        }
+        PedestrianRefs.Clear();
     }
 }
