@@ -45,7 +45,27 @@ public class GameManagerScript : MonoBehaviour
             GameObject newFlat = Instantiate(flatPlayer, null);
             newFlat.transform.position = player.position;
         }
+        StartCoroutine(LoseGame(player));
+    }
 
+    IEnumerator LoseGame(Transform player)
+    {
+        Camera cam = Camera.main;
+        float zoomIn = 3;
+        yield return new WaitForSeconds(2);
+        while(cam.orthographicSize > zoomIn+.1)
+        {
+            yield return new WaitForEndOfFrame();
+            float newAmount = Mathf.Lerp(cam.orthographicSize, zoomIn, 2 * Time.deltaTime);
+            cam.orthographicSize = newAmount;
+
+            Vector3 targetPos =cam.transform.position + Vector3.ProjectOnPlane((player.position - cam.transform.position), cam.transform.forward);
+
+            Vector3 newPos = Vector3.Lerp(cam.transform.position, targetPos, 2 * Time.deltaTime);
+            cam.transform.position = newPos;
+
+        }
+        Camera.main.orthographicSize = zoomIn;
         ui.SwitchToDeathScreen();
     }
 }
