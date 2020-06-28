@@ -268,7 +268,14 @@ public class RunController : MonoBehaviour
             {
                 startGrabEnum(pedestrianRef);
             }
-
+            if (PedestrianRefs.Count > 0)
+            {
+                AnimationController.SetTrigger("PickupCarry");
+            }
+            else
+            {
+                AnimationController.SetTrigger("PickupNoCarry");
+            }
         }
     }
 
