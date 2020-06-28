@@ -37,4 +37,4 @@ MonoBehaviour:
   lengthGenerated: 8
   minimumDistanceBetweenSafeZones: 10
   safeZoneDistanceVariance: 5
-  scrollSpeed: 10
+  scrollSpeed: 12

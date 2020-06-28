@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbff151f5ebfaec49b2fc192ce2ed51d, type: 3}
-  m_Name: RandomSpawner
+  m_Name: EnviromentSpawner
   m_EditorClassIdentifier: 
   obsticles:
   - {fileID: 7029512930112427807, guid: 74a1375383784de42b236c9204a5f530, type: 3}
