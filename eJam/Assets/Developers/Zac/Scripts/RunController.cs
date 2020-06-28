@@ -24,7 +24,8 @@ public class RunController : MonoBehaviour
 
     [Header("Jumping Values")]
     public float Gravity = 20.0f;
-    public float JumpStrength = 20.0f;
+    public float StartJumpStrength = 20.0f;
+    float currentJumpStrength = 20.0f;
     public float DoubleJumpStrength = 25.0f;
     public bool bCanDoubleJump = true;
 
@@ -57,11 +58,13 @@ public class RunController : MonoBehaviour
     Vector3 lastLookingDir;
 
     const float PedestrianWeight = 1.0f;
+    const float PedestrianJumpWeight = 5.0f;
 
     private void Start()
     {
         PushForce = MinPushForce;
         MaxSpeed = StartingMaxSpeed;
+        currentJumpStrength = StartJumpStrength;
     }
 
     private void Awake()
@@ -91,11 +94,11 @@ public class RunController : MonoBehaviour
             CurrentState = PlayerState.jumping;
             if (bDoubleJumped)
             {
-                currentJump = DoubleJumpStrength;
+                currentJump = currentJumpStrength;
             }
             else
             {
-                currentJump = JumpStrength;
+                currentJump = currentJumpStrength;
             }
         }
     }
@@ -298,6 +301,13 @@ public class RunController : MonoBehaviour
         {
             MaxSpeed = PedestrianWeight;
         }
+
+        currentJumpStrength -= PedestrianJumpWeight;
+        if(currentJumpStrength <= 0.0f)
+        {
+            currentJumpStrength = PedestrianJumpWeight;
+        }
+
         if (PedestrianQueue.Count > 0)
         {
             startGrabEnum(PedestrianQueue[PedestrianQueue.Count - 1]);
@@ -374,6 +384,12 @@ public class RunController : MonoBehaviour
         if(MaxSpeed > StartingMaxSpeed)
         {
             MaxSpeed = StartingMaxSpeed;
+        }
+
+        currentJumpStrength += PedestrianJumpWeight;
+        if(currentJumpStrength > StartJumpStrength)
+        {
+            currentJumpStrength = StartJumpStrength;
         }
 
         pedestrianRef.transform.parent = destination.transform;
