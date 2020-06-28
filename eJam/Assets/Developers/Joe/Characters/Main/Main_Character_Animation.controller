@@ -331,7 +331,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Character_Rig|Upper_Pickup_Carry 0
+  m_Name: Character_Rig|Upper_Pickup_NoCarry
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
@@ -345,7 +345,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -6512164440410030319, guid: c43eafa8969a97d40b8b47f5e5d9c425,
+  m_Motion: {fileID: -7050312403944177891, guid: c43eafa8969a97d40b8b47f5e5d9c425,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -670,7 +670,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Falling
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6661365200297635007}
   m_Solo: 0
