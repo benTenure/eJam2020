@@ -288,7 +288,7 @@ public class RunController : MonoBehaviour
             pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
-        pedestrianRef.transform.position = (destination.position + Vector3.up);
+        pedestrianRef.transform.position = (destination.position + destination.forward);
         pedestrianRef.transform.rotation = PedestrianParent.rotation;
         PedestrianQueue.Remove(pedestrianRef);
         PedestrianRefs.Add(pedestrianRef);
