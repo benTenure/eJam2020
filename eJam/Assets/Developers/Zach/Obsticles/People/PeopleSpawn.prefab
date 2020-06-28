@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8421217037435816511}
   - component: {fileID: 2112042107200216016}
   m_Layer: 0
-  m_Name: CarSpawn
+  m_Name: PeopleSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d1cc39310f90b409679fe39dac1dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 6a80b4e8430671841abf99c14550b9a9, type: 2}
+  data: {fileID: 11400000, guid: a90690c43d0b5a94894a7970d035c031, type: 2}

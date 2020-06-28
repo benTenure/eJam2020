@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8421217037435816511}
   - component: {fileID: 2112042107200216016}
   m_Layer: 0
-  m_Name: CarSpawn
+  m_Name: RandomSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
