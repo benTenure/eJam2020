@@ -5,10 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    PlayerInputActions inputActions;
+
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+        inputActions.PlayerControls.Jump.performed += ctx => PressedPlay();
     }
 
     // Update is called once per frame
@@ -25,5 +33,15 @@ public class MainMenuManager : MonoBehaviour
     public void PressedExit()
     {
         Application.Quit();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
 }

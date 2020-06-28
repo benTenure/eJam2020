@@ -19,6 +19,14 @@ public class GameUIManager : MonoBehaviour
     public GameObject inGamePanel;
     public GameObject deathPanel;
 
+    PlayerInputActions inputActions;
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputActions();
+        inputActions.PlayerControls.Jump.performed += ctx => PressJumpRestart();
+    }
+
     private void Start()
     {
         inGamePanel.SetActive(true);
@@ -31,6 +39,14 @@ public class GameUIManager : MonoBehaviour
         distanceText.text = distance.value.ToString();
 
         peopleText.text = people.value.ToString();
+    }
+
+    void PressJumpRestart()
+    {
+        if (deathPanel.activeInHierarchy)
+        {
+            RestartGame();
+        }
     }
 
     public void RestartGame()
@@ -47,5 +63,15 @@ public class GameUIManager : MonoBehaviour
         
         inGamePanel.SetActive(false);
         deathPanel.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
 }
