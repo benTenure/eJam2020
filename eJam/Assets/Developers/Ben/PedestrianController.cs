@@ -47,4 +47,17 @@ public class PedestrianController : MonoBehaviour
             }
         }
     }
+
+    public void BeenDroppedOff(Transform lookDir)
+    {
+        anim.SetTrigger("SafeZone");
+        if (lookDir)
+        {
+            transform.LookAt(lookDir);
+        }
+        else
+        {
+            transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, transform.rotation.w);
+        }
+    }
 }

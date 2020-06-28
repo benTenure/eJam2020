@@ -438,6 +438,7 @@ public class RunController : MonoBehaviour
         else
         {
             pedestrianRef.transform.parent = destination.transform;
+            pedestrianRef.BeenDroppedOff(MyRigidBody.transform);
             if (PedestrianRefs.Count > 0)
             {
                 DropOffManual(destination);
