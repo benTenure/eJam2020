@@ -58,7 +58,7 @@ public class RunController : MonoBehaviour
     Vector3 lastLookingDir;
 
     const float PedestrianWeight = 1.0f;
-    const float PedestrianJumpWeight = 5.0f;
+    const float PedestrianJumpWeight = 2.0f;
 
     private void Start()
     {
@@ -289,11 +289,11 @@ public class RunController : MonoBehaviour
     IEnumerator InterpPedestrian(PedestrianController pedestrianRef, Transform destination)
     {
         bGrabEnumRunning = true;
-        Vector3 dir = (destination.position + Vector3.up) - pedestrianRef.transform.position;
+        Vector3 dir = (destination.position + destination.forward) - pedestrianRef.transform.position;
         float mag = dir.magnitude;
         while (mag > 0.5f)
         {
-            dir = (destination.position + Vector3.up) - pedestrianRef.transform.position;
+            dir = (destination.position + destination.forward) - pedestrianRef.transform.position;
             mag = dir.magnitude;
             pedestrianRef.transform.position += (dir.normalized * 100.0f) * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
