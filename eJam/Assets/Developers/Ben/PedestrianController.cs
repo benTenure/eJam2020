@@ -53,7 +53,9 @@ public class PedestrianController : MonoBehaviour
         anim.SetTrigger("SafeZone");
         if (lookDir)
         {
-            transform.LookAt(lookDir);
+            Vector3 sameLevel = new Vector3(lookDir.position.x, this.transform.position.y, lookDir.position.z);
+
+            transform.LookAt(sameLevel);
         }
         else
         {

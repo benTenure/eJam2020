@@ -382,9 +382,20 @@ public class RunController : MonoBehaviour
 
     public Vector3 ReturnRandomVectorWithinBounds(GameObject bounds)
     {
-        var colliderScaleX = bounds.transform.localScale.x / 2;
-        var colliderScaleZ = bounds.transform.localScale.z / 2;
-        
+        float colliderScaleX;
+        float colliderScaleZ;
+        if (bounds.GetComponent<Collider>())
+        {
+            colliderScaleX = bounds.GetComponent<Collider>().bounds.extents.x;
+            colliderScaleZ = bounds.GetComponent<Collider>().bounds.extents.z;
+        }
+        else
+        {
+            colliderScaleX = bounds.transform.localScale.x / 2;
+            colliderScaleZ = bounds.transform.localScale.z / 2;
+        }
+
+
         var randomX = Random.Range(bounds.transform.position.x - colliderScaleX, bounds.transform.position.x + colliderScaleX);
         var randomZ = Random.Range(bounds.transform.position.z - colliderScaleZ, bounds.transform.position.z + colliderScaleZ);
         var randomDropOffVector = new Vector3(randomX, bounds.transform.position.y, randomZ);
