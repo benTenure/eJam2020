@@ -7,6 +7,7 @@ public class NYEBallController : MonoBehaviour
 {
     // Variables for dealing with lerping colors
     public Material glowingFacesMaterial;
+    public GameObject ball;
     
     private Color[] _cycledColors = {Color.red, Color.magenta, Color.yellow, Color.blue, Color.green};
     private Color _lerpedColor;
@@ -43,8 +44,8 @@ public class NYEBallController : MonoBehaviour
         // Handling the ball's changing colors (emissive too!)
         _lerpedColor = Color.Lerp(_cycledColors[_first], _cycledColors[_second], _t);
         
-        glowingFacesMaterial.SetColor("_Color", _lerpedColor);
-        glowingFacesMaterial.SetColor("_Emission", _lerpedColor);
+        ball.GetComponent<Renderer>().material.SetColor("_Color", _lerpedColor);
+        ball.GetComponent<Renderer>().material.SetColor("_Emission", _lerpedColor);
         
         _t += _lerpSpeed * Time.deltaTime;
 

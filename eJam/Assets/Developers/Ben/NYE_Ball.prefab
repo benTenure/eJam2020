@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glowingFacesMaterial: {fileID: 2100000, guid: 65d1d86f533453d4585d76b2cb329c17,
     type: 2}
+  ball: {fileID: 1190307587405291339}
   finalLocation: {fileID: 8648798404272772498}
 --- !u!1 &1190307587405291339
 GameObject:
