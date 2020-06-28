@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8612726681792700022}
   - component: {fileID: 8612726681792700023}
   - component: {fileID: 8612726681792700020}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pedestrian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
