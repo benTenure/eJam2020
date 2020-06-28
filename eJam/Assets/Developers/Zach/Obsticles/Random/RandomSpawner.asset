@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 7619790287498670209, guid: 165c6a8cac0f3af4db9a7fbfefb3fa16, type: 3}
   - {fileID: 2782931538874946544, guid: f9b952f763e65db44bb5592232a064e9, type: 3}
   - {fileID: 6050400526189727372, guid: 6f69873450a5edd418a52c5071530275, type: 3}
-  spawnChance: 47.3
+  spawnChance: 100
   randomRotation: 1

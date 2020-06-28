@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbff151f5ebfaec49b2fc192ce2ed51d, type: 3}
-  m_Name: StoreFrontSpawner
+  m_Name: CurbsideSpawner
   m_EditorClassIdentifier: 
   obsticles:
-  - {fileID: 7029512930112427807, guid: 74a1375383784de42b236c9204a5f530, type: 3}
-  - {fileID: 3471728933429184280, guid: 4235547063def464183f7c23657a05bf, type: 3}
-  - {fileID: 3653898801542354956, guid: 7dbdb0bb264f0074c915bc509ca7299e, type: 3}
-  - {fileID: 7619790287498670209, guid: 165c6a8cac0f3af4db9a7fbfefb3fa16, type: 3}
-  - {fileID: 2782931538874946544, guid: f9b952f763e65db44bb5592232a064e9, type: 3}
-  - {fileID: 6050400526189727372, guid: 6f69873450a5edd418a52c5071530275, type: 3}
+  - {fileID: 8030964734630365218, guid: 3ff50cea2bb695141b429208f97db2f2, type: 3}
+  - {fileID: 4537782139178719779, guid: b6f7254be65830d41b600adf8e883b73, type: 3}
+  - {fileID: 124857585738217157, guid: 11d6df9ed819d7644a42e9a1bfffea12, type: 3}
   spawnChance: 47.3
-  randomRotation: 1
+  randomRotation: 0

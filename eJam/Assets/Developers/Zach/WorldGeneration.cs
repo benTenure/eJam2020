@@ -115,9 +115,22 @@ public class WorldGeneration : MonoBehaviour
                 Destroy(sections[i]);
                 sections.RemoveAt(i);
                 i--;
+
+                //Add to ui
+                GameManagerScript.Instance.distance.value = GetBlocksRun()/4;
+
+                UpdateDifficulty();
+
             }
         }
     }
+
+    void UpdateDifficulty()
+    {
+        scrollModifier = 1 + (1 * (((float)GetBlocksRun()) / 4) / 50);
+        if (scrollModifier > 2) scrollModifier = 2;
+    }
+
 
     public void SetScrollModifier(float amount)
     {

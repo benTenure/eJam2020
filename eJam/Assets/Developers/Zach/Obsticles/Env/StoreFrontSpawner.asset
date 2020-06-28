@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: StoreFrontSpawner
   m_EditorClassIdentifier: 
   obsticles:
-  - {fileID: 7029512930112427807, guid: 74a1375383784de42b236c9204a5f530, type: 3}
-  - {fileID: 3471728933429184280, guid: 4235547063def464183f7c23657a05bf, type: 3}
-  - {fileID: 3653898801542354956, guid: 7dbdb0bb264f0074c915bc509ca7299e, type: 3}
-  - {fileID: 7619790287498670209, guid: 165c6a8cac0f3af4db9a7fbfefb3fa16, type: 3}
-  - {fileID: 2782931538874946544, guid: f9b952f763e65db44bb5592232a064e9, type: 3}
-  - {fileID: 6050400526189727372, guid: 6f69873450a5edd418a52c5071530275, type: 3}
+  - {fileID: 6744746584486572676, guid: c07a74d51c460cc45b54444728dadfbb, type: 3}
+  - {fileID: 3726362709818815075, guid: 4b7e8c15245e4f34ebacee06fbb6c281, type: 3}
+  - {fileID: 7013782474057210904, guid: 5d0421e3589b20e409bd184f8882e9fa, type: 3}
+  - {fileID: 7094468427318157110, guid: ecdc21e10a0091e4b846fe259eec7336, type: 3}
+  - {fileID: 6864115117701507873, guid: a33c1fb77c473584091748ab3d2ddef4, type: 3}
   spawnChance: 47.3
-  randomRotation: 1
+  randomRotation: 0
