@@ -7,31 +7,21 @@ public class MainMenuManager : MonoBehaviour
 {
     PlayerInputActions inputActions;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void Awake()
     {
         inputActions = new PlayerInputActions();
         inputActions.PlayerControls.Jump.performed += ctx => PressedPlay();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PressedPlay()
     {
+        GetComponent<AudioSource>().Play();
         SceneManager.LoadScene(1);
     }
 
     public void PressedExit()
     {
+        GetComponent<AudioSource>().Play();
         Application.Quit();
     }
 

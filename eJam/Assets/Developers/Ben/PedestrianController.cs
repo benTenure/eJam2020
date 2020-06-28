@@ -14,6 +14,7 @@ public class PedestrianController : MonoBehaviour
     private static readonly int PickUp = Animator.StringToHash("PickUp");
 
     public GameObject[] Hats;
+    public AudioClip dropOffSound;
 
     private void PickUpPedestrian()
     {
@@ -68,6 +69,7 @@ public class PedestrianController : MonoBehaviour
         {
             transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, transform.rotation.w);
         }
+        GetComponent<AudioSource>().PlayOneShot(dropOffSound);
     }
 
     private void OnEnable()

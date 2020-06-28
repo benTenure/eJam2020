@@ -177,6 +177,7 @@ MonoBehaviour:
   - {fileID: 7903764189837472654}
   - {fileID: 5691079449098803723}
   - {fileID: 8904307067945750309}
+  dropOffSound: {fileID: 8300000, guid: f43dd0d3481c6b4428ae80e8b36c0353, type: 3}
 --- !u!135 &8612726681792700020
 SphereCollider:
   m_ObjectHideFlags: 0

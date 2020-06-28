@@ -51,8 +51,8 @@ public class GameUIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        // We're just assuming we're reloading the game scene since yeah... idk
-        print("WE did it boss!");
+        // We're just assuming we're reloading the current game scene since yeah... idk
+        GetComponent<AudioSource>().Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -67,6 +67,7 @@ public class GameUIManager : MonoBehaviour
 
     public void PressedExit()
     {
+        GetComponent<AudioSource>().Play();
         Application.Quit();
     }
 
