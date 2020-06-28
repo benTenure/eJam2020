@@ -400,6 +400,9 @@ public class RunController : MonoBehaviour
         else
         {
             bDropEnumRunning = false;
+            currentJumpStrength = StartJumpStrength;
+            MaxSpeed = StartingMaxSpeed;
+
         }
     }
 }
