@@ -1,32 +1,38 @@
 fileFormatVersion: 2
-guid: c43eafa8969a97d40b8b47f5e5d9c425
+guid: 837eb5648126b6b48a5f29630ade9174
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: -8719598546967334352
-    second: Character_Rig|Idle
+      74: 2746602667231888445
+    second: Pedestrian_Rig|Idle
   - first:
-      74: -5851226584813347360
-    second: Character_Rig|Jump_Lower_Idle
+      74: 8346874889617445616
+    second: Pedestrian_Rig|Jump_Lower_Idle
   - first:
-      74: 4367211613153806615
-    second: Character_Rig|Jump_Lower_Run
+      74: -4267217258573202816
+    second: Pedestrian_Rig|Jump_Lower_Run
   - first:
-      74: -6393896364318989826
-    second: Character_Rig|Run_Lower_NoCarry
+      74: 4875349044912252071
+    second: Pedestrian_Rig|Pedestrian_LayingDown
   - first:
-      74: -2196913867885095474
-    second: Character_Rig|Run_Upper_NoCarry
+      74: -1717710550685653673
+    second: Pedestrian_Rig|Pedestrian_On Back
   - first:
-      74: -3657606448298207175
-    second: Character_Rig|Shader NodetreeAction.001
+      74: 4319453227503781306
+    second: Pedestrian_Rig|Run_Lower_NoCarry
   - first:
-      74: 8789213337183883991
-    second: Character_Rig|TestAnimation
+      74: 1949493687706093049
+    second: Pedestrian_Rig|Run_Upper_Carry
   - first:
-      74: -1499650130537634271
-    second: Character_Rig|Run_Upper_Carry
+      74: 7419859966535674810
+    second: Pedestrian_Rig|Run_Upper_NoCarry
+  - first:
+      74: -9029129420411963345
+    second: Pedestrian_Rig|Shader NodetreeAction.001
+  - first:
+      74: -8099980652661011514
+    second: Pedestrian_Rig|TPose
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -56,8 +62,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Character_Rig|Idle
-      takeName: Character_Rig|Idle
+      name: Pedestrian_Rig|Idle
+      takeName: Pedestrian_Rig|Idle
       internalID: 0
       firstFrame: 0
       lastFrame: 45
@@ -67,7 +73,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -85,8 +91,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Character_Rig|Jump_Lower_Idle
-      takeName: Character_Rig|Jump_Lower_Idle
+      name: Pedestrian_Rig|Pedestrian_LayingDown
+      takeName: Pedestrian_Rig|Pedestrian_LayingDown
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -96,7 +102,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -114,8 +120,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Character_Rig|Jump_Lower_Run
-      takeName: Character_Rig|Jump_Lower_Run
+      name: Pedestrian_Rig|Pedestrian_On Back
+      takeName: Pedestrian_Rig|Pedestrian_On Back
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -125,7 +131,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -143,66 +149,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Character_Rig|Run_Lower_NoCarry
-      takeName: Character_Rig|Run_Lower_NoCarry
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 22
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Character_Rig|Run_Upper_NoCarry
-      takeName: Character_Rig|Run_Upper_NoCarry
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 22
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Character_Rig|Run_Upper_Carry
-      takeName: Character_Rig|Run_Upper_Carry
+      name: Pedestrian_Rig|TPose
+      takeName: Pedestrian_Rig|TPose
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -288,7 +236,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
