@@ -7,29 +7,20 @@ using UnityEngine.InputSystem;
 public class PedestrianController : MonoBehaviour
 {
     public GameObject selectionRing;
+    public Animator anim;
     
     private float _timePickedUp = 0f;
     private bool _isPickedUp = false;
+    private static readonly int PickUp = Animator.StringToHash("PickUp");
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        //print($"Time: {_timePickedUp}");
-    }
-
-    public void PickUpPedestrian()
+    private void PickUpPedestrian()
     {
         if (!_isPickedUp)
         {
             _timePickedUp = Time.time;
             selectionRing.SetActive(false);
             _isPickedUp = true;
+            anim.SetTrigger(PickUp);
         }
         else
         {
@@ -42,13 +33,13 @@ public class PedestrianController : MonoBehaviour
     {
         if (other.CompareTag("Player") && !_isPickedUp)
         {
-            print("We found the player");
             PickUpPedestrian();
 
-            RunController PlayerRef = other.transform.parent.GetComponent<RunController>();
-            if (PlayerRef)
+            var playerRef = other.transform.parent.GetComponent<RunController>();
+            
+            if (playerRef)
             {
-                PlayerRef.GrabPedestrian(this);
+                playerRef.GrabPedestrian(this);
             }
             else
             {
