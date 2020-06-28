@@ -190,7 +190,7 @@ MonoBehaviour:
   CurrentState: 0
   MyCamera: {fileID: 7230416318742897008}
   MyRigidBody: {fileID: 1675477290853453966}
-  PedestrianParent: {fileID: 8532824960962829227}
+  PedestrianParent: {fileID: 2941319179203937808}
   StartingMaxSpeed: 20
   Acceleration: 75
   Deceleration: 100
@@ -414,9 +414,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2461862195009642607}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8532824960962829227 stripped
+--- !u!4 &2941319179203937808 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -3152267364007543868, guid: c43eafa8969a97d40b8b47f5e5d9c425,
+  m_CorrespondingSourceObject: {fileID: -8431898852864432513, guid: c43eafa8969a97d40b8b47f5e5d9c425,
     type: 3}
   m_PrefabInstance: {fileID: 2461862195009642607}
   m_PrefabAsset: {fileID: 0}
