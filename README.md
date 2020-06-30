@@ -13,3 +13,6 @@ This was a game created by a team of 5 developers during the 48-hour deadline gi
 
 ## Extra Details
 The game [(play it here!)](https://bentenure.itch.io/final-disaster) was created using the Unity Game engine and Blender was used for any models or animations that were needed for the game. Feel free to play our game and let us know what you think! Any feedback is greatly appreciated.
+
+## Amazing Logo
+![Flamingo I](https://user-images.githubusercontent.com/32964703/86187246-57c74b80-bb09-11ea-9bd6-cad09a3f8d7f.png)
