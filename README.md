@@ -1,7 +1,7 @@
 # IGDA eJam2020
 
 ## Description:
-This was a game created by a team of 5 developers during the 48-hour deadline given to us. It is an isometric endless runner where you are chased around New York City by the New Year's Eve ball that has mysteriously fallen off of its building on the last day of 2020. The main objective of the game is running as fast as you can, so you're not squished, and saving any people along the way who can't help themselves.
+This was a game created by a team of 5 developers during the 48-hour deadline given to us. It is an isometric endless runner where you are chased around New York City by the New Year's Eve ball that has mysteriously fallen off of its building on the last day of 2020. The main objective of the game is running as fast as you can, so you're not squished, and saving any people along the way who can't help themselves. Created by Flamingo Interactive (not trademarked at all)
 
 ## Team Members
 * Ben Przysucha - Programmer
